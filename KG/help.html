@@ -1,0 +1,312 @@
+﻿<html>
+<head>
+<link rel="stylesheet" href="../lib/opt.css" type="text/css">
+<script type="text/javascript" src="../lib/prototype-1.6.0.3.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>KlavoTools - документация</title></head>
+<body>
+	<div id="head" class="minwidth green-back">
+	<div class="minwidth_holyhack">
+	<div class="minwidth_container">
+
+
+	<div id="logo">
+		<img src="../img/icon/klavotools_logo.png" alt="KlavoTools Logo" title="KlavoTools">
+	</div>
+
+	<div class="right">
+
+		<div class="login-block">
+			&nbsp;
+				</div>
+
+		<div class="menu">
+			<a href="http://klavogonki.ru/forum/">Форум</a>
+			<a href="http://klavogonki.ru/wiki/">Вики</a>
+			<a href="http://klavogonki.ru/about/">Об игре</a>
+			<a href="http://klavogonki.ru/vocs/">Словари</a>
+			<a href="http://klavogonki.ru/top/">Рекорды</a>
+			<a href="http://klavogonki.ru/gamelist/">Игра</a>
+			<a href="/KG/help.html">Помощь</a>
+		</div>
+	</div>
+
+	<div style="clear: both;"></div>
+
+	</div>
+	</div>
+	</div>
+
+	<div id="line"></div>
+	
+	<!--<div class="bar"></div>-->
+
+	<div style="clear: both;"></div>
+
+<style>
+#content .help_title{font-weight:bold;padding-left:10px;padding-bottom:15px;padding-top:20px;font-size:16px;color:#777777;}
+#content .help_content{padding-left:20px;}
+</style>
+<div id="content" class="minwidth">
+	<h4>Помощь</h4>
+	<div style="float:right;width:300px;">
+	<ul>
+		<li><a href>О расширении</a></li>
+		<li><a href>Установка</a></li>
+		<li><a href>Обновление</a></li>
+		<li><a href>Настройки</a></li>
+		<li><a href>Возможности</a></li>
+		<ul>
+			<li><a style="font-weight:bold;" href="./help_new_ext.html">Подробнее о возможностях</a></li>
+		</ul>
+		<li><a href>Удаление</a></li>
+	</ul>
+	</div>
+	<div style="padding-right:350px;">
+	<div class="help_title">О расширении</div>
+	<div class="help_content">
+		<b>KlavoTools Chrome</b> - расширение для браузеров, созданных на основе проекта с открытым исходным кодом <a href="http://code.google.com/chromium/">Chromium</a>. Среди наиболее популярных Chromium-браузеров можно выделить следующих: <a href="http://download-chromium.appspot.com/">Chromium</a>, <a href="http://www.google.com/chrome/eula.html">Google Chrome</a>, <a href="http://www.srware.net/en/software_srware_iron_download.php">SRWare Iron</a>, <a href="http://www.comodo.com/home/browsers-toolbars/browser.php">Comodo Dragon</a>.
+		Расширение добавляет большое количество нового функционала на сайте <a href="http://klavogonki.ru">Клавогонки.ру</a>. Основная часть добавленного функционала идёт за счёт уже написанных отдельных <a href="http://userscripts.org/groups/235/scripts">юзерскриптов</a>. KlavoTools объединяет все скрипты в единое целое, и добавляет множество других возможностей.
+	</div>
+	
+	<div class="help_title">Установка</div>
+	<div class="help_content">
+	<b>KlavoTools Chrome</b> можно установить только на Chromium-подобные браузеры (см. "О расширении").
+		Для установки расширения зайдите на <a href="https://chrome.google.com/webstore/detail/klavotools/gjfkpldhfcknofacejmlahofmcmhgpic">страничку KlavoTools</a> в магазине <a href="https://chrome.google.com/webstore/">Webstore</a> и щёлкните по кнопке "<span style="color:#666666;">Установить</span>". После окончания установки в верхнем правом углу высветиться уведомление и появится кнопка: <img src="../img/icon/normal.png">.
+		Обратите внимание, что функционал KlavoTools частично дублирует функционал некоторых юзерскриптов. Отключите дублирующие скрипты для избежания ошибок в работе KlavoTools. Ниже приведён <u>неполный</u> список скриптов, которые необходимо отключить\удалить:
+<ul><li>AntiXSS</li>
+<li>BB-Tools</li>
+<li>BigTextArea</li>
+<li>chat2BBcode</li>
+<li>comment_fix (userstyle)</li>
+<li>DelGameButton</li>
+<li>restoreChat</li>
+<li>hideAllGamesInGamelist</li>
+<li>hideUserList</li>
+<li>KlavoEvents</li>
+<li>ModerTools</li>
+<li>PostOptions+ © olimo</li>
+<li>sortresults © novkostya</li>
+<li>default_blue (userstyle)</li>
+<li>default_gray (userstyle)</li>
+<li>default_green (userstyle)</li>
+<li>default_pink (userstyle)</li>
+<li>tag "hide"</li>
+<li>hide_cars</li>
+<li>QuickVocsStart</li>
+<li>ErrorControlMode (ECM)</li></ul>
+</div>
+
+<div class="help_title">Обновление</div>
+<div class="help_content">Поддерживать стабильную работу KlavoTools помогает автоматическое обновление. Обновлением расширений управляет браузер, по умолчанию проверка наличий обновлений всех расширений браузер делает раз в несколько часов.
+<p>При необходимости можно обновить KlavoTools вручную.<br />Для этого выберите: <b>Настройки (браузера) -> Инструменты -> Расширения</b>. Включите режим разработчика и нажмите на появившуюся кнопку "<span style="color:#666666;">Обновить расширения</span>".</p>
+</div>
+	
+<div class="help_title">Настройки</div>
+<div class="help_content"><b>KlavoTools Chrome</b> имеет гибкие настройки. Чтобы попасть в настройки расширения, нажмите правой кнопкой мыши (ПКМ) по кнопке KlavoTools <img src="../img/icon/normal.png">, и в появившемся контекстном меню выберите пункт "<span style="color:#666666;">Настройки</span>".<br />Настройки позволяют:
+	<ul><li>Выбрать цветовую гамму</li>
+		<li>Отключить не используемые вами скрипты.</li>
+		<li>Настроить оповещения о старте рейтинговых соревнований на сайте, а так же "Прямой эфир".* </li>
+	</ul>
+	После изменений настроек не забывайте нажимать кнопку "<span style="color:#666666;">Сохранить</span>".
+	
+	<br /><span style="font-size:10px;">*оповещения о новостях отключить невозможно.</span>
+	
+	</div>
+	
+	<div class="help_title">Возможности</div>
+	<div class="help_content">
+		Здесь приведён список функций расширения. Подробнее о функционале читайте <a href="help_new_ext.html">тут</a>.
+<div style="padding-top:5px;text-decoration:underline;">Заезд:</div>
+<ul>
+<li>Сортировка результатов заезда + счётчик количества игроков в заезде;</li>
+<li>Возможность отменять заезд в соревнованиях (при наличии Премиума);</li>
+<li>Возможность скрытия игроков во время заезда;</li>
+<li>Контроль ошибок в словарях.</li>
+</ul>
+<u>Чат:</u>
+<ul>
+<li>Кнопка для показа BB-кода лога чата. Можно с легкостью скопировать диалог со смайликами в БЖ или на форум;</li>
+<li>Возможность скрытия списка пользователей справа;</li>
+</ul>
+<u>Форум:</u>
+<ul>
+<li>Появились дополнительные BB-кнопки;</li>
+<li>Появилось окошко для удобной вставки смайлов;</li>
+<li>Кнопка "Имя" внизу каждого сообщения позволит вам обратиться непосредственно к автору в один клик, а "Цитата" позволит быстро процитировать сообщение;</li>
+<li>Улучшено управление модерирования форума.</li>
+</ul>
+<u>Другое:</u>
+<ul>
+<li>Автообновление;</li>
+<li>Лента событий. Версия своя;</li>
+<li>Возможность скрывать все заезды в gamelist одним щелчком;</li>
+<li>Теперь вы будете всегда проинформированы о новых личных сообщениях, даже если вы не находитесь на Клавогонках.</li>
+<li>Иконка расширения меняет цвет. Серый цвет - не залогинено. Чёрный цвет - залогинено. Синий цвет - есть новые личные сообщения, так же указывается их количество. При нажатии на кнопку появится окошко с новыми личными сообщениями и быстрым доступом к различным страницам;</li>
+<li>Фикс "оторванности" комментариев;</li>
+<li>В настройках можно сменить дизайн сайта на синий, серый, зелёный или розовый;</li>
+<li>Пользовательские хайды;</li>
+<li>Уведомления о старте рейтинговых заездов по расписанию;</li>
+<li>Кнопки быстрого старта по словарям;</li>
+<li>Быстрый поиск игрока по нику;</li>
+<li>Создание своих быстрых ссылок;</li>
+<li>«Прямой эфир».</li>
+</ul>
+	</div>
+	
+	<div class="help_title">Удаление</div>
+	<div class="help_content">Щёлкните правой кнопкой мыши (ПКМ) по кнопке <img src="../img/icon/normal.png">, расположенной на тулбаре и в появившемся контекстном меню выберите пункт "<span style="color:#666666;">Удалить</span>". Учтите, что все данные настроек KlavoTools будут безвозвратно удалены!
+	</div>
+	
+	
+	
+	</div>
+	
+</div>
+	<div id="footer" style="padding: 1px 10px;">
+		<div style="clear: both;">&nbsp;</div>
+		<div class="bar"></div>
+		<table width="100%"><tbody><tr>
+			<td align="left" style="width: 400px;">
+				<span class="KTS_bottom">KlavoTools. © <a href="http://klavogonki.ru/profile/82885/">Fenex</a>, 2011 - 2013.</span>
+			</td>
+			<td align="right">
+				<span id="copyright"></span>
+				<span id="links" style="color:black;">
+					Вы можете поддержать развитие расширения пополнив кошелёк: <b>R218033385818</b>
+					<!--<a href="http://klavogonki.ru/about/">Правила</a> •
+					<a href="http://klavogonki.ru/about/learning/">Обучение</a> •
+					<a href="http://klavogonki.ru/about/stats/">Статистика</a> •
+					<a href="http://klavogonki.ru/contact/">Обратная связь</a>-->
+				</span>
+			</td>
+		</tr></tbody></table>
+	</div>
+
+
+
+
+	<div class="popup-box" id="popup" style="position: absolute; display: none;">
+		<table>
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c" id="popup_content">			
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>
+	</div>			
+
+	<div id="popalert" class="stdpopup popup_message" style="display: none;">
+	<div class="back">&nbsp;</div>
+	<div class="content1">
+	<div class="content2 popup-box">
+
+		<table width="100%">
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c">
+					<div class="a1"><div class="a2 stdpopup-content" id="popalert-content"></div></div>
+					<p align="center">
+					<input type="button" class="btn" value="Закрыть" />
+					</p> 
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>
+	</div>
+	</div>
+	</div>
+
+	<div id="popconfirm" class="stdpopup popup_message" style="display: none;">
+	<div class="back">&nbsp;</div>
+	<div class="content1">
+	<div class="content2 popup-box">
+
+		<table width="100%">
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c">
+					<div class="a1"><div class="a2 stdpopup-content" id="popconfirm-content"></div></div>
+					<p align="center">
+					<input type="button" class="btn" id="popconfirm-btn-ok" value="OK" /> 
+					<input type="button" class="btn" value="Отмена" />
+					</p> 
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>				
+	</div>
+	</div>
+	</div>
+
+	<div id="top-popup" style="display: none">
+	<div class="right">
+	<input type="button" value="" />
+	<a><img src="http://klavogonki.ru/img/yellow_cross.gif" alt="X"></a>
+	</div>
+	<div class="content">
+
+	</div>
+	</div>
+
+	<div id="drop_message" style="display:none">
+		
+		<div class="content1">
+		<div class="content2 popup-box">
+		<table>
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c">
+					
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>
+		<div class="close"><ins></ins></div>
+	</div>
+	</div>
+	</div>
+</body>
+
+</html>

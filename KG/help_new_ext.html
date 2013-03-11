@@ -1,0 +1,283 @@
+﻿<html>
+<head>
+<link rel="stylesheet" href="../lib/opt.css" type="text/css">
+<script type="text/javascript" src="../lib/prototype-1.6.0.3.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>KlavoTools - документация</title></head>
+<body>
+	<div id="head" class="minwidth green-back">
+	<div class="minwidth_holyhack">
+	<div class="minwidth_container">
+
+
+	<div id="logo">
+		<img src="../img/icon/klavotools_logo.png" alt="KlavoTools Logo" title="KlavoTools">
+	</div>
+
+	<div class="right">
+
+		<div class="login-block">
+			&nbsp;
+				</div>
+
+		<div class="menu">
+			<a href="http://klavogonki.ru/forum/">Форум</a>
+			<a href="http://klavogonki.ru/wiki/">Вики</a>
+			<a href="http://klavogonki.ru/about/">Об игре</a>
+			<a href="http://klavogonki.ru/vocs/">Словари</a>
+			<a href="http://klavogonki.ru/top/">Рекорды</a>
+			<a href="http://klavogonki.ru/gamelist/">Игра</a>
+			<a href="/KG/help.html">Помощь</a>
+		</div>
+	</div>
+
+	<div style="clear: both;"></div>
+
+	</div>
+	</div>
+	</div>
+
+	<div id="line"></div>
+	
+	<!--<div class="bar"></div>-->
+
+	<div style="clear: both;"></div>
+
+<style>
+#content .help_title{font-weight:bold;padding-left:10px;padding-bottom:15px;padding-top:20px;font-size:16px;color:#777777;}
+#content .help_content{padding-left:20px;}
+</style>
+<div id="content" class="minwidth">
+	<h4>Помощь</h4>
+	<div style="float:right;width:300px;">
+	<ul>
+		<li style="padding-bottom:7px;"><a style="color:green;" href="./help.html">Помощь - Основное</a></li>
+		<li><a href>Кнопка KlavoTools</a></li>
+		<li><a href>Всплывающее окно (popup)</a></li>
+		<li><a href>Цветовая гамма (тема, стиль)</a></li>
+		<li><a href>Уведомления</a></li>
+		<li><a href>Скрипты</a></li>
+	</ul>
+	</div>
+	
+<div style="padding-right:350px;">
+<div class="help_title">Кнопка KlavoTools</div>
+<div class="help_content">
+	Кнопка KlavoTools находится на тулбаре вверху справа, рядом с иконами других расширений. Это индикатор, имеющий три состояния:
+	<ul>
+	<li><img src="../img/icon/digits.png" /> Кнопка серого цвета: вы на сайте не залогинены или нет связи с сайтом.</li>
+	<li><img src="../img/icon/normal.png" /> Кнопка чёрного цвета: вы на сайте залогинены и новых сообщений нет.</li>
+	<li><img src="../img/icon/dic.png" /> Кнопка синего цвета: вы на сайте залогинены и есть новые сообщения. Количество новых сообщений также указывается цифрами на красном фоне внизу кнопки.</li>
+	</ul>
+	При нажатии на кнопку всплывает окно (popup).
+</div>
+<div class="help_title">Всплывающее окно (popup)</div>
+<div class="help_content">
+	<b>Всплывающее окно (popup)</b> появляется при нажатии на кнопку KlavoTools. Во всплывающем окне можно выделить три зоны:
+	<ul>
+	<li>header - выпадающее меню со ссылками на различные страницы сайта. Если вы не залогинены, первое выпадающее меню "Профиль" не активно.</li>
+	<li>Зона поиска игрока по нику. В поле ввода вводите ник игрока, жмёте на кнопку <input style="height:20px;" type="button" value="→"> и KlavoTools отобразит ID искомого игрока, а так же ссылки на его профиль, статистику и комментарии.</li>
+	<li>Свободное место. Если есть новые сообщения (иконка KlavoTools синего цвета), то здесь будут отображены все непрочитанные сообщения.</li></ul>
+	<br />
+	Все ссылки во всплывающем окне имеют три режима работы:
+	<ul>
+	<li>Одинарный щелчок - открыть ссылку в текущей вкладке;</li>
+	<li>Двойной щелчок - открыть ссылку в новой активной вкладке;</li>
+	<li>Щелчок колёсиком мыши - открыть ссылку в фоне (новая <u>не</u>активная вкладка).</li>
+	</ul>
+	<br /><br />
+	В меню-шапке есть пункт "<span style="color:green;">Настройки</span>", который ведёт в настройки KlavoTools. Рядом есть полезный пункт "Ссылки". В нём можно добавлять свои собственные ссылки на различные сайты.<br /><br />Чтобы настроить свои ссылки, нужно нажать на ссылку "Добавить\изменить" в выпадающем списке меню "Ссылки". Откроется инструментарий для редактирования списка ссылок.<br /><br />
+	Внизу в поле "Текст" вводится название ссылки, а в поле "Ссылка" - URL-адрес. В URL-адресах подстрока "__USERID__" будет заменяться на ID активного аккаунта, т.е. при заходе на сайт с другого аккаунта, будет подставляться воответствующий ID. Если вы не будите залогинены, то эта ссылка будет не активной.<br />
+	После заполнения двух полей жмёте кнопку "Добавить", и сгенирированный код добавляется в большое поле. В конце не забывайте сохранить внесённые вами изменения.<br /><br />Так же можно самим писать код в основном поле. Синтаксис очевиден:<br /><br />
+	<div><b>[link]</b> - объявление новой ссылки.<br />
+	<b>[url][/url]</b> - внутри пишется URL-адрес.<br />
+	<div style="padding-left:10px;">Если адрес с доменом klavogonki.ru, то можно указывать короткий путь. Например, вместо http://klavogonki.ru/profile/__USERID__/stats/?gametype=chars можно указывать /profile/__USERID__/stats/?gametype=chars</div><br />
+	<b>[title][/title]</b> - название ссылки.
+	</div><br /><br />
+	Настроенные ссылки появятся в выпадающем меню "Ссылки" после "<i>Изменить</i>".
+
+	</ul>
+</div>
+	
+<div class="help_title">Цветовая гамма (тема, стиль)</div>
+<div class="help_content">
+	В KlavoTools имеется возможность изменить цветовую гамму сайта. По сути, это userstyle. На данный момент имеется возможность выбрать одну из пяти стилей (включая стандартный - бежевый), а именно:
+	<ul>
+	<li>Бежевый</li>
+	<li>Синий</li>
+	<li>Серый</li>
+	<li>Розовый</li>
+	<li>Зелёный</li>
+	</ul>
+	Выбрать цветовую гамму можно в настройках KlavoTools. Вы можете создать свою цветовую схемму и отослать полученный userstyle <a href="http://klavogonki.ru/profile/82885/">мне</a>. Я встрою стиль в KlavoTools с указанием авторства.
+</div>
+	
+	
+<div class="help_title">Уведомления</div>
+<div class="help_content">
+Уведомления в KlavoTools - это всплывающие сообщения (по умолчанию - в нижнем правом углу).
+<p>Настроить место отображения всплывающих сообщений можно в настрйках браузера (настройки применятся ко всем расширениям).</p>
+<p>В KlavoTools есть три вида уведомлений:
+<ul>
+<li>Системные - уведомления с светло-голубым фоном. Эти нельзя отключить в настройках KlavoTools. В этих уведомления рассказывается о важных новостях.</li>
+<li>Уведомления о начале соревнований. Настраивается в настройках KlavoTools. Можно выбрать за какое время до старта высвечивать уведомление и на какие именно соревнования (x1, x2, x3, x5).</li>
+<li>"Прямой эфир" - уведомления о новом комментарии на сайте. Трансляция страницы <a href="http://klavogonki.ru/live/">http://klavogonki.ru/live/</a>. Обновление происходит раз в минуту. При включённой опции кушается много трафика.</li>
+</ul>
+Уведомления кликабельны. При нажатии на уведомления "о начале соревнования" попадаете в соревнвоание, "прямой эфир" - в соответствующий комментарий.
+</p>
+</div>
+
+<div class="help_title">Скрипты</div>
+<div class="help_content">Остальной функционал достигается подключением отдельных модулей - скриптов. Некоторые из них можно отключить на странице настроек KlavoTools.
+</div>
+<!----------------------------------->	
+</div>
+	
+</div>
+	<div id="footer" style="padding: 1px 10px;">
+		<div style="clear: both;">&nbsp;</div>
+		<div class="bar"></div>
+		<table width="100%"><tbody><tr>
+			<td align="left" style="width: 400px;">
+				<span class="KTS_bottom">KlavoTools. © <a href="http://klavogonki.ru/profile/82885/">Fenex</a>, 2011 - 2013.</span>
+			</td>
+			<td align="right">
+				<span id="copyright"></span>
+				<span id="links" style="color:black;">
+					Вы можете поддержать развитие расширения пополнив кошелёк: <b>R218033385818</b>
+					<!--<a href="http://klavogonki.ru/about/">Правила</a> •
+					<a href="http://klavogonki.ru/about/learning/">Обучение</a> •
+					<a href="http://klavogonki.ru/about/stats/">Статистика</a> •
+					<a href="http://klavogonki.ru/contact/">Обратная связь</a>-->
+				</span>
+			</td>
+		</tr></tbody></table>
+	</div>
+
+
+
+
+	<div class="popup-box" id="popup" style="position: absolute; display: none;">
+		<table>
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c" id="popup_content">			
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>
+	</div>			
+
+	<div id="popalert" class="stdpopup popup_message" style="display: none;">
+	<div class="back">&nbsp;</div>
+	<div class="content1">
+	<div class="content2 popup-box">
+
+		<table width="100%">
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c">
+					<div class="a1"><div class="a2 stdpopup-content" id="popalert-content"></div></div>
+					<p align="center">
+					<input type="button" class="btn" value="Закрыть" />
+					</p> 
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>
+	</div>
+	</div>
+	</div>
+
+	<div id="popconfirm" class="stdpopup popup_message" style="display: none;">
+	<div class="back">&nbsp;</div>
+	<div class="content1">
+	<div class="content2 popup-box">
+
+		<table width="100%">
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c">
+					<div class="a1"><div class="a2 stdpopup-content" id="popconfirm-content"></div></div>
+					<p align="center">
+					<input type="button" class="btn" id="popconfirm-btn-ok" value="OK" /> 
+					<input type="button" class="btn" value="Отмена" />
+					</p> 
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>				
+	</div>
+	</div>
+	</div>
+
+	<div id="top-popup" style="display: none">
+	<div class="right">
+	<input type="button" value="" />
+	<a><img src="http://klavogonki.ru/img/yellow_cross.gif" alt="X"></a>
+	</div>
+	<div class="content">
+
+	</div>
+	</div>
+
+	<div id="drop_message" style="display:none">
+		
+		<div class="content1">
+		<div class="content2 popup-box">
+		<table>
+			<tbody><tr>
+				<td class="tl"></td>
+				<td class="t"></td>
+				<td class="tr"></td>
+			</tr>
+			<tr>
+				<td class="l"></td>
+				<td class="c">
+					
+				</td>
+				<td class="r"></td>
+			</tr>
+			<tr>
+				<td class="bl"></td>
+				<td class="b"></td>
+				<td class="br"></td>
+			</tr>
+		</tbody></table>
+		<div class="close"><ins></ins></div>
+	</div>
+	</div>
+	</div>
+</body>
+
+</html>

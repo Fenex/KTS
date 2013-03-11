@@ -1,0 +1,251 @@
+﻿{
+	"styles": [
+		{
+			"color": "beige",
+			"name": "Бежевый (стандартный)",
+			"active": null
+		},
+		{
+			"color": "blue",
+			"name": "Синий",
+			"active": null
+		},
+		{
+			"color": "gray",
+			"name": "Серый",
+			"active": null
+		},
+		{
+			"color": "pink",
+			"name": "Розовый",
+			"active": null
+		},
+		{
+			"color": "green",
+			"name": "Зелёный",
+			"active": null
+		}
+	],
+	"scripts": [
+		{
+			"id": "KlavoEvents",
+			"name": "KlavoEvents",
+			"enabled": true,
+			"visible": true,
+			"description": "Лента событий — список предстоящих и прошедших мероприятий"
+		},
+		{
+			"id": "sortResults",
+			"name": "sortResults",
+			"enabled": true,
+			"visible": true,
+			"description": "Сортировка результатов заезда и счетчик игроков"
+		},
+		{
+			"id": "DelGameButton",
+			"name": "DelGameButton",
+			"enabled": true,
+			"visible": true,
+			"description": "Кнопка удаления результата в соревнованиях (работает только для Премиум-аккаунтов)"
+		},
+		{
+			"id": "hideUserList",
+			"name": "hideUserList",
+			"enabled": true,
+			"visible": true,
+			"description": "Возможность скрытия списка пользователей чата"
+		},
+		{
+			"id": "hideAllGamesInGamelist",
+			"name": "hideAllGamesInGamelist",
+			"enabled": true,
+			"visible": true,
+			"description": "Возможность скрытия всех игр в списке игр"
+		},
+		{
+			"id": "chat2BBCode",
+			"name": "chat2BBCode",
+			"enabled": true,
+			"visible": true,
+			"description": "Кнопка для копирования лога чата со всем оформлением"
+		},
+		{
+			"id": "CustomHide",
+			"name": "CustomHide",
+			"enabled": true,
+			"visible": true,
+			"description": "Поддержка скрытого текста с заголовком"
+		},
+		{
+			"id": "ProfileTools",
+			"name": "ProfileTools",
+			"enabled": true,
+			"visible": true,
+			"description": "Позволяет выделять несколько сообщений в бортжурнале, комментариях, почте и удалять их"
+		},
+		{
+			"id": "QuickVocsStart",
+			"name": "QuickVocsStart",
+			"enabled": true,
+			"visible": true,
+			"description": "На страницах словарей появляется кнопка быстрого старта с выбором параметров заезда"
+		},
+		{
+			"id": "HideCars",
+			"name": "HideCars",
+			"enabled": true,
+			"visible": true,
+			"description": "Скрытие машинок во время набора текста"
+		},
+		{
+			"id": "ECM",
+			"name": "Error Control Mode",
+			"enabled": true,
+			"visible": true,
+			"description": "Контроль ошибок в словарях"
+		},
+		{
+			"id": "NEC",
+			"name": "No-error counter",
+			"enabled": true,
+			"visible": true,
+			"description": "Счётчик для безошибочного"
+		},
+		{
+			"id": "AntiBackspace",
+			"name": "AntiBackspace",
+			"enabled": true,
+			"visible": true,
+			"description": "Защита от вылетов при нажатии Backspace в конце заезда (Backspace не будет выполнять функцию «Назад» в заездах)"
+		},
+		{
+			"id": "timeout_alert",
+			"name": "AlertStartGame",
+			"enabled": true,
+			"visible": true,
+			"description": "Напоминает за 10 секунд до старта заезда с таймаутом более 45 секунд звуковым оповещением."
+		}
+	],
+	"menu": [
+		{
+			"name": "Форум",
+			"href": "http://klavogonki.ru/forum/"
+		},
+		{
+			"name": "Вики",
+			"href": "http://klavogonki.ru/wiki/"
+		},
+		{
+			"name": "Об игре",
+			"href": "http://klavogonki.ru/about/"
+		},
+		{
+			"name": "Словари",
+			"href": "http://klavogonki.ru/vocs/"
+		},
+		{
+			"name": "Рекорды",
+			"href": "http://klavogonki.ru/top/"
+		},
+		{
+			"name": "Игра",
+			"href": "http://klavogonki.ru/gamelist/"
+		},
+		{
+			"name": "Помощь",
+			"href": "./KG/help.html"
+		}
+	],
+	"notifications": {
+		"xRace": [
+			{
+				"value": "x1",
+				"text": "x1",
+				"checked": false,
+				"disabled": false
+			},
+			{
+				"value": "x2",
+				"text": "x2",
+				"checked": false,
+				"disabled": false
+			},
+			{
+				"value": "x3",
+				"text": "x3",
+				"checked": false,
+				"disabled": false
+			},
+			{
+				"value": "x5",
+				"text": "x5",
+				"checked": false,
+				"disabled": false
+			}
+		],
+		"xRaceTimer": [
+			{
+				"value": 0,
+				"text": "выкл",
+				"checked": false
+			},
+			{
+				"value": 20,
+				"text": "20 сек",
+				"checked": false
+			},
+			{
+				"value": 30,
+				"text": "30 сек",
+				"checked": false
+			},
+			{
+				"value": 45,
+				"text": "45 сек",
+				"checked": false
+			},
+			{
+				"value": 60,
+				"text": "1 минуту",
+				"checked": false
+			},
+			{
+				"value": 90,
+				"text": "1 минуту 30 сек",
+				"checked": false
+			},
+			{
+				"value": 120,
+				"text": "2 минуты",
+				"checked": false
+			},
+			{
+				"value": 180,
+				"text": "3 минуты",
+				"checked": false
+			},
+			{
+				"value": 240,
+				"text": "4 минуты",
+				"checked": false
+			},
+			{
+				"value": 999,
+				"text": "Как можно раньше",
+				"checked": false
+			}
+		],
+		"special": [
+			{
+				"value": "live",
+				"text": "Прямой эфир",
+				"checked": false
+			},
+			{
+				"value": "msg",
+				"text": "Личные сообщения",
+				"checked": false
+			}
+		]
+	}
+}
