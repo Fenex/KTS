@@ -1,4 +1,4 @@
-﻿//localStorage['KlavoTools'] = 'false';
+//localStorage['KlavoTools'] = 'false';
 if(localStorage['KlavoTools']!='true') {
 	localStorage['KlavoTools'] = 'true';
 	//alert('KlavoTools установлен.');
@@ -9,7 +9,7 @@ function rememberSettings() {
 }
 
 var KlavoTools = new Object();
-var KTS_ver = 14046;
+var KTS_ver = 14049;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 60 * 1000; //1min
