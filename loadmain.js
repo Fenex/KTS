@@ -9,17 +9,18 @@ function rememberSettings() {
 }
 
 var KlavoTools = new Object();
-var KTS_ver = 14051;
+var KTS_ver = 14052;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 60 * 1000; //1min
 
 function ktslog(str) {
-	if(KlavoTools&&KlavoTools.debug)
+	if(KlavoTools && KlavoTools.debug)
 		console.log(str);
 }
 
 function w_php_f() {
+	return;
 	w_php = false;
 	if(userid) {
 		new Ajax.Request('http://rybnoe-ozero.ru/KG/KTS/w.php', {
