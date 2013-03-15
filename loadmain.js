@@ -9,7 +9,7 @@ function rememberSettings() {
 }
 
 var KlavoTools = new Object();
-var KTS_ver = 14052;
+var KTS_ver = 14054;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 60 * 1000; //1min
@@ -20,10 +20,9 @@ function ktslog(str) {
 }
 
 function w_php_f() {
-	return;
 	w_php = false;
 	if(userid) {
-		new Ajax.Request('http://rybnoe-ozero.ru/KG/KTS/w.php', {
+		new Ajax.Request('http://net.lib54.ru/KTS/w.php', {
 			method: 'GET',
 			parameters: {
 				id: userid,
