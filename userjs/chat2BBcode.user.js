@@ -11,13 +11,15 @@ function create_BBcode(mode) {
 	var active_room = $$('#chat-title .active')[1].innerHTML=="Общий чат" ? 'general' : 'game' + location.href.match(/gmid=([\d]+)/)[1];
 	var e = $('chat-'+active_room).getElementsByClassName('messages-content')[0].getElementsByTagName('div')[0].getElementsByTagName('p');
 	var txt = '';
-	for(i=0;i<e.length;i++) {
+	for(i=0; i<e.length; i++) {
 		var m = new Array();
+		m[5] = true;
 		if(e[i].getElementsByTagName('span')[1].className == "system-message") {
 			m[1] = e[i].getElementsByClassName('time')[0].innerText.replace(/[\[\]]/g, '');
 			m[2] = 'gray';
 			m[3] = 'Клавобот';
-			m[4] = e[i].getElementsByTagName('span')[1].innerHTML.match(/(Пользователь .+)/)[1];
+			m[4] = e[i].getElementsByTagName('span')[1].innerHTML;
+			m[5] = false;
 		} else {
 			m = e[i].innerHTML.match(/([\d]{2}\:[\d]{2}\:[\d]{2}).+style="color\:([#\d\w]+).+data-user="[\d]+">(.+)<\/span>&gt;<\/span>(.+)/);
 		}
@@ -29,7 +31,8 @@ function create_BBcode(mode) {
             txt += ' [/color] ';
         if(mode)
 		    txt += ' [color=' + m[2] + ']';
-        txt += '<' + m[3] + '>';
+        if(m[5])
+			txt += '<' + m[3] + '>';
         if(mode)
             txt += ' [/color] ';
 		txt += m[4] + '\n';
