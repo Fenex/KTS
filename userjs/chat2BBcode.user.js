@@ -13,29 +13,35 @@ function create_BBcode(mode) {
 	var txt = '';
 	for(i=0; i<e.length; i++) {
 		var m = new Array();
-		m[5] = true;
 		if(e[i].getElementsByTagName('span')[1].className == "system-message") {
 			m[1] = e[i].getElementsByClassName('time')[0].innerText.replace(/[\[\]]/g, '');
 			m[2] = 'gray';
 			m[3] = 'Клавобот';
 			m[4] = e[i].getElementsByTagName('span')[1].innerHTML;
-			m[5] = false;
+			m[5] = true;
 		} else {
 			m = e[i].innerHTML.match(/([\d]{2}\:[\d]{2}\:[\d]{2}).+style="color\:([#\d\w]+).+data-user="[\d]+">(.+)<\/span>&gt;<\/span>(.+)/);
 		}
 				
 		if(mode)
-    		txt += ' [color=grey] ';
+    		txt += ' [color=gray] ';
         txt += '[' + m[1] + ']';
         if(mode)
             txt += ' [/color] ';
-        if(mode)
-		    txt += ' [color=' + m[2] + ']';
-        if(m[5])
+        if(!m[5]){
+			if(mode)
+				txt += ' [color=' + m[2] + ']';
 			txt += '<' + m[3] + '>';
-        if(mode)
-            txt += ' [/color] ';
-		txt += m[4] + '\n';
+			if(mode)
+				txt += ' [/color] ';
+			txt += m[4] + '\n';
+		} else {
+			if(mode)
+				txt += ' [color=gray]';
+			txt += m[4] + '\n';
+			if(mode)
+				txt += ' [/color] ';
+		}
 	}
 	txt = txt.replace(/<a(.*?)>/ig, '').replace(/<\/a>/ig, '');
     while (true) {
