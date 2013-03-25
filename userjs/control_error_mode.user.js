@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name           Error Control Mode
 // @namespace      klavogonki.ru
-// @version        1.2.1 KTS
+// @version        1.2.2 KTS
 // @author         Fenex
 // @description    No-Error Mode for Users Ditionaries
 // @include        http://klavogonki.ru/g/*
@@ -202,27 +202,31 @@ ECM.prototype.write_func = function() {
 }
 
 if(!document.getElementById('KTS_ECM')) {
-	var par_row = document.getElementById("param_metronome").parentNode.parentNode.parentNode.parentNode.insertRow(4);
-	par_row.style.display = "none";
-	par_row.id = "noerror-all";
-	
-	var td1 = par_row.insertCell(0);
-	td1.innerHTML = "<img id='ecm_pencil' src='http://klavogonki.ru/img/pencil.png' style='cursor:pointer;display:none;' onclick='ecm.editFuncName();'/> Лимит ошибок:";
-	var td2 = par_row.insertCell(1);
-	td2.style.setProperty("text-align", "center", null);
-	td2.setAttribute('colspan', '2');
-	td2.innerHTML = '<span id="cs_noerrorall_less" style="font-weight:bold;color:#CF0C36;font-size:13px;cursor:pointer;" onClick="ecm.changeErrorLimit(-1);">&#171;</span>&nbsp;' +
-					'<span id="cs_noerrorall" style="font-weight:bold;color:#11013F;font-size:13px;"></span>&nbsp;' +
-					'<span id="cs_noerrorall_more" style="font-weight:bold;color:#74B30E;font-size:13px;cursor:pointer;" onClick="ecm.changeErrorLimit(1);">&#187;</span><span title="Автоматическое создание следующего заезда" style="float:right;"><input type="checkbox" onchange="ecm.changeAutoRestart(this);" id="autorestart"/><label for="autorestart">Авто →</label></span>';
+	try {
+		var par_row = document.getElementById("param_metronome").parentNode.parentNode.parentNode.parentNode.insertRow(4);
+		par_row.style.display = "none";
+		par_row.id = "noerror-all";
+		
+		var td1 = par_row.insertCell(0);
+		td1.innerHTML = "<img id='ecm_pencil' src='http://klavogonki.ru/img/pencil.png' style='cursor:pointer;display:none;' onclick='ecm.editFuncName();'/> Лимит ошибок:";
+		var td2 = par_row.insertCell(1);
+		td2.style.setProperty("text-align", "center", null);
+		td2.setAttribute('colspan', '2');
+		td2.innerHTML = '<span id="cs_noerrorall_less" style="font-weight:bold;color:#CF0C36;font-size:13px;cursor:pointer;" onClick="ecm.changeErrorLimit(-1);">&#171;</span>&nbsp;' +
+						'<span id="cs_noerrorall" style="font-weight:bold;color:#11013F;font-size:13px;"></span>&nbsp;' +
+						'<span id="cs_noerrorall_more" style="font-weight:bold;color:#74B30E;font-size:13px;cursor:pointer;" onClick="ecm.changeErrorLimit(1);">&#187;</span><span title="Автоматическое создание следующего заезда" style="float:right;"><input type="checkbox" onchange="ecm.changeAutoRestart(this);" id="autorestart"/><label for="autorestart">Авто →</label></span>';
 
-	var s = document.createElement('script');
-	s.innerHTML = "";
-	var arr = ["ECM", "ECM.prototype.write_func", "ECM.prototype.find_func", "ECM.prototype.changeErrorLimit", "ECM.prototype.checkGameFunc", "ECM.prototype.startMonitoring", "ECM.prototype.checkGame", "ECM.prototype.editFuncName", "ECM.prototype.confirmFindFunc", "ECM.prototype.saveManFunc", "ECM.prototype.changeAutoRestart"];
-	for(var i=0; i<arr.length; i++) {
-		s.innerHTML += arr[i] + " = " + eval(arr[i]) + ";";
+		var s = document.createElement('script');
+		s.innerHTML = "";
+		var arr = ["ECM", "ECM.prototype.write_func", "ECM.prototype.find_func", "ECM.prototype.changeErrorLimit", "ECM.prototype.checkGameFunc", "ECM.prototype.startMonitoring", "ECM.prototype.checkGame", "ECM.prototype.editFuncName", "ECM.prototype.confirmFindFunc", "ECM.prototype.saveManFunc", "ECM.prototype.changeAutoRestart"];
+		for(var i=0; i<arr.length; i++) {
+			s.innerHTML += arr[i] + " = " + eval(arr[i]) + ";";
+		}
+		s.innerHTML += 'window.ecm = new ECM("ecm");';
+		document.body.appendChild(s);
+	} catch (e) {
+		console.log('ECM script: load failed');
 	}
-	s.innerHTML += 'window.ecm = new ECM("ecm");';
-	document.body.appendChild(s);
 	
 	var tmp_elem = document.createElement('div');
 	tmp_elem.id = 'KTS_ECM';

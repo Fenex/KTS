@@ -1,11 +1,11 @@
 ﻿chrome.tabs.onUpdated.addListener(
 function(tabId, changeInfo, tab) {
 	if(changeInfo.status=="complete") {
-    	insertScriptOnTab(tabId, tab.url);
+    	insertScriptsOnTab(tabId, tab.url);
 	}
 });
 
-function insertScriptOnTab(tabId, url) {
+function insertScriptsOnTab(tabId, url) {
 	
 	if (/klavogonki\.ru\/gamelist/.test(url)) {
 		//chrome.tabs.executeScript(tabId, {file: 'userjs/chat.js'});

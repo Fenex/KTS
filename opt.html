@@ -16,6 +16,7 @@
 
 	<div id="logo">
 		<img src="./img/icon/klavotools_logo.png" alt="KlavoTools Logo" title="KlavoTools">
+		<span style="position:relative;right:150px;bottom:10px;font-size:10px;">Версия: <span id="echo_version">загрузка...</span></span>
 	</div>
 
 	<div class="right">
@@ -68,7 +69,7 @@
 			<table><tr>
 				<td>
 					<div ng-repeat="x in settings.notifications.xRace">
-						<input type="checkbox" id="{{x1.value}}" name="{{x.value}}" disabled="{{x.disabled}}" checked="{{x.checked}}" class="user_set" /><label for="{{x.value}}">{{x.text}}</label>
+						<input type="checkbox" id="{{x.value}}" name="{{x.value}}" disabled="{{x.disabled}}" checked="{{x.checked}}" class="user_set" /><label for="{{x.value}}">{{x.text}}</label>
 					</div>
 				</td>
 				<td><div>Предупреждать за:</div>

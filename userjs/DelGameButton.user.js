@@ -3,7 +3,7 @@
 // @namespace      klavogonki
 // @include        http://klavogonki.ru/g/*
 // @author         Fenex
-// @version        2.1
+// @version        2.1.1
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 function checkFinished(youid) {
@@ -19,7 +19,7 @@ function checkFinished(youid) {
 	}
 }
 function chek_game() {
-	if((game.params)&&(game.players)) {
+	if(game && game.params && game.players) {
 		clearInterval(fnxtm);
 		var youid;
 		for(i=0;i<game.players.length;i++) {

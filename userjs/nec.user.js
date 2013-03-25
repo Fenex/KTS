@@ -1,11 +1,11 @@
 ﻿// ==UserScript==
-// @name           NEC (no-error counter)
-// @version        1.0.3 KTS
-// @namespace      klavogonki.ru
-// @author         Fenex
-// (r)             rgall
-// @description    add additional stats to the no-error games
-// @include        http://klavogonki.ru/g/*
+// @name			NEC (no-error counter)
+// @version			1.0.5 KTS
+// @namespace		klavogonki.ru
+// @author			Fenex
+// @respect			rgall
+// @description		add additional stats to the no-error games
+// @include			http://klavogonki.ru/g/*
 // ==/UserScript==
 
 NEC = function(name) {
@@ -197,25 +197,26 @@ str_NEC.checkGame = function() {
 }
 
 if(!document.getElementById('KTS_NEC')) {
-	
-	var elem = document.createElement("div");
-	elem.style.setProperty("background", "none repeat scroll 0 0 #F8F4E6", null);
-	elem.style.setProperty("margin-top", "10px", null);
-	elem.style.setProperty("margin-bottom", "10px", null);
-	elem.style.display = "none";
-	elem.id = "counter-panel";
-
 	var params = document.getElementById("params");
-	params.parentNode.insertBefore(elem, params.nextSibling);
 
-	var script = document.createElement("script");
-	script.innerHTML = 'NEC = ' + NEC;
-	for(var name in str_NEC)
-		script.innerHTML += ';\nNEC.prototype.' + name.toString() + ' = ' + str_NEC[name.toString()];
-	script.innerHTML += ';window.nec = new NEC("nec");';
-	document.body.appendChild(script);
+	if(params) {
+		var elem = document.createElement("div");
+		elem.style.setProperty("background", "none repeat scroll 0 0 #F8F4E6", null);
+		elem.style.setProperty("margin-top", "10px", null);
+		elem.style.setProperty("margin-bottom", "10px", null);
+		elem.style.display = "none";
+		elem.id = "counter-panel";
 
+		params.parentNode.insertBefore(elem, params.nextSibling);
 
+		var script = document.createElement("script");
+		script.innerHTML = 'NEC = ' + NEC;
+		for(var name in str_NEC)
+			script.innerHTML += ';\nNEC.prototype.' + name.toString() + ' = ' + str_NEC[name.toString()];
+		script.innerHTML += ';window.nec = new NEC("nec");';
+		document.body.appendChild(script);
+	}
+		
 	var tmp_elem = document.createElement('div');
 	tmp_elem.id = 'KTS_NEC';
 	tmp_elem.style.display = 'none';

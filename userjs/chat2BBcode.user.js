@@ -4,7 +4,7 @@
 // @include        http://klavogonki.ru/gamelist*
 // @include        http://klavogonki.ru/g*
 // @author         Fenex
-// @version        2.1.1 KTS
+// @version        2.1.2 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 function create_BBcode(mode) {
@@ -78,6 +78,10 @@ if(!document.getElementById('KTS_chat2BBcode')) {
 		array.push('game'+room[1]);
 		
 	for(i=0;i<array.length;i++) {
+		if(!document.getElementById('chat-'+array[i])) {
+			continue;
+		}
+		
 		var btn = document.getElementById('chat-'+array[i]).getElementsByTagName('input')[1];
 		var a = document.createElement('input');
 		a.setAttribute('onclick', 'create_BBcode(1)');

@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           klavogonki: Sort results
-// @version        0.19.2 KTS
+// @version        0.19.3 KTS
 // @namespace      klavogonki
 // @author         novkostya
 // @description    Adds "Sort" button to klavogonki site
@@ -178,7 +178,7 @@ function updateStats()
 		byRang.push(guestsCount);
 	$("players_count").innerHTML = "<b>" + totalCount + "</b> = " + byRang.join(" + ");
 }
-if(!document.getElementById('KTS_sortresults')) {
+if(!document.getElementById('KTS_sortresults') && document.getElementById("invite") && document.getElementById("players")) {
 	var script = document.createElement("script");
 	script.innerHTML = sort + autoSort + sortClick + updateStats + 'setInterval("(" + updateStats + ")()", 1000);';
 	document.body.appendChild(script);

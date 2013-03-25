@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           klavogonki - hide cars
-// @version        0.7r
+// @version        0.7.1 KTS
 // @namespace      2klavogonki.ru
 // @description    hide card while typing
 // @include        http://klavogonki.ru/g/*
@@ -41,30 +41,32 @@ function hidecars_toggle(act){
 	*/
 	document.getElementById('players').style.display = dsp;
 }
+
 function changeHideCars() {
 	var param = document.getElementById("hide_cars_check");
-	if (param.checked == 1) {
+	if (param.checked) {
 		localStorage['hideCars_STATUS'] = '1';
 	}
 	else {
 		localStorage['hideCars_STATUS'] = '0';
 	}
 }
-if(!document.getElementById('KTS_taghide')) {
-	var elem = document.createElement("div");
-	//elem.style.display = "none";
-	elem.id = "hide_cars_hidden";
-	elem.innerHTML = '<input id="hide_cars_check" type="checkbox" onChange="changeHideCars();"><label for="hide_cars_check">Скрывать машины</label>' +
-	'<input type="hidden" id="hide_cars_flag">';
-	var params = document.getElementById("param_shadow");
-	//params.parentNode.insertBefore(elem, params.nextSibling);
-	params.parentNode.insertBefore(elem, params);
 
-	var script = document.createElement("script");
-	script.innerHTML = HideCars + changeHideCars + hidecars_toggle +
-	' document.observe("keydown", function(event){if (event.ctrlKey && event.keyCode == 38) hidecars_toggle("show");}); ' +
-	' document.getElementById("hide_cars_flag").value = setInterval("HideCars()", 500); ';
-	document.body.appendChild(script);
+if(!document.getElementById('KTS_taghide')) {
+	var params = document.getElementById("param_shadow");
+	if(params) {
+		var elem = document.createElement("div");
+		elem.id = "hide_cars_hidden";
+		elem.innerHTML = '<input id="hide_cars_check" type="checkbox" onChange="changeHideCars();"><label for="hide_cars_check">Скрывать машины</label>' + '<input type="hidden" id="hide_cars_flag">';
+			
+		params.parentNode.insertBefore(elem, params);
+
+		var script = document.createElement("script");
+		script.innerHTML = HideCars + changeHideCars + hidecars_toggle +
+		' document.observe("keydown", function(event){if (event.ctrlKey && event.keyCode == 38) hidecars_toggle("show");}); ' +
+		' document.getElementById("hide_cars_flag").value = setInterval("HideCars()", 500); ';
+		document.body.appendChild(script);
+	}
 	
 	var tmp_elem = document.createElement('div');
 	tmp_elem.id = 'KTS_taghide';

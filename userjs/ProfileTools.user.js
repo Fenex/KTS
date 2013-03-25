@@ -7,9 +7,10 @@
 // @exclude        http://klavogonki.ru/profile/*/mail/compose*
 // @exclude        http://klavogonki.ru/profile/*/blog/write*
 // @author         Fenex
-// @version        1.4.1 KTS
+// @version        1.5.0 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
+
 function createFormRM(login, subject, text) {
 	var fd = document.createElement('form');
 	fd.setAttribute('action', 'http://klavogonki.ru/profile/'+__user__+'/mail/compose/');
@@ -29,6 +30,7 @@ function createFormRM(login, subject, text) {
 	fd.submit();
 	return;
 }
+
 function initReplyBlock() {
 	var exp = new RegExp('http\:\/\/klavogonki\.ru\/profile\/'+__user__+'\/mail\/([0-9]+)');
 	if(!location.href.match(exp))
@@ -60,6 +62,7 @@ function initReplyBlock() {
 	}
 	return true;
 }
+
 function initProfileTools() {
 	if(location.href.indexOf('http://klavogonki.ru/profile/'+__user__)<0||location.href.indexOf('compose')>0||location.href.indexOf('write')>0)
 		return false;
@@ -67,7 +70,7 @@ function initProfileTools() {
 	if(/^http\:\/\/klavogonki\.ru\/profile\/\d{1,7}\/comments/.test(location.href)&&document.getElementById('comments_block')) {
 		set =  {elem: document.getElementById('comments_block').getElementsByClassName('comment'), style: {input:'margin-top: 2px;', btn: 'margin-left:13em;'}};
 		if(location.href.indexOf(__user__.toString())>0) {
-			showAllComments = function() {$('show_all_comments_img').show();new Ajax.Request('/ajax/get-user-comments', {parameters: {user: __user__ },onSuccess: function(transport) {$('show_all_comments_img').hide();$('show_all_comments').hide();$('comments_block').update(transport.responseText.replace('display:none', ''));insertButton();}});};
+			showAllComments = function() {$('show_all_comments_img').show();new Ajax.Request('/ajax/get-user-comments', {parameters: {user: __user__ },onSuccess: function(transport) {$('show_all_comments_img').hide();$('show_all_comments').hide();$('comments_block').update(transport.responseText.replace('display:none', ''));onLoadAllMessages(false);}});};
 		}
 	}
 	else if(/^http\:\/\/klavogonki\.ru\/profile\/\d{1,7}\/blog\/post\d+/.test(location.href)&&document.getElementsByClassName('user-content')[0]&&document.getElementsByClassName('user-content')[0].getElementsByClassName('comments')[0])
@@ -229,7 +232,7 @@ function changeSafeMode(elem) {
 
 function insertBottomBtns(style) {
 	if(document.getElementById('PT_btns'))
-		return false;
+		return true;
 	var elem_ins = false;
 	if(document.getElementsByClassName('pages')[0])
 		var elem_ins = document.getElementsByClassName('user-content')[0].getElementsByClassName('pages')[0];
@@ -242,7 +245,7 @@ function insertBottomBtns(style) {
 	var e = document.createElement('div');
 	e.id = 'PT_btns';
 	e.setAttribute('style', style);
-	e.innerHTML = '<input type="button" value="Выбрать всё" onClick="messCheck(true)" /> <input type="button" value="Снять со всех" onClick="messCheck(false)" /> <input type="button" value="Инвертировать" onClick="messInvert()" /><br /><input type="checkbox" id="checkedSaveMode" onclick="changeSafeMode(this)" checked> Безопасный режим<br /><input type="button" value="Удалить выбранные" onClick="delMessSelected()" /> ';
+	e.innerHTML = '<input type="button" value="Выбрать всё" onClick="messCheck(true)" /> <input type="button" value="Снять со всех" onClick="messCheck(false)" /> <input type="button" value="Инвертировать" onClick="messInvert()" /><br /><input type="checkbox" id="checkedSaveMode" onclick="changeSafeMode(this)" checked> Безопасный режим<br /><input type="button" value="Удалить выбранные" onClick="delMessSelected()" /><input type="button" id="btn_LoadAllMessages" onclick="onLoadAllMessages(true);" style="display:none;" value="Инициализация" />';
 	elem_ins.parentNode.insertBefore(e, elem_ins);
 		
 	localStorage['PT_safemode'] = localStorage['PT_safemode'] ? localStorage['PT_safemode'] : '1';
@@ -251,9 +254,21 @@ function insertBottomBtns(style) {
 	return true;
 }
 
+function onLoadAllMessages(a) {
+	if(!a) {
+		$$('#PT_btns input').each(function (e) {e.setAttribute('disabled', 'disabled')});
+		$$('#PT_btns input')[$$('#PT_btns input').length-1].removeAttribute('disabled');
+		$$('#PT_btns input')[$$('#PT_btns input').length-1].style.display = '';
+	} else {
+		insertButton();
+		$$('#PT_btns input').each(function (e) {e.removeAttribute('disabled');});
+		$$('#PT_btns input')[$$('#PT_btns input').length-1].style.display = 'none';
+	}
+}
+
 if(!document.getElementById('KTS_ProfileTools')) {
 	var s = document.createElement('script');
-	s.innerHTML = delComment+elems_PT_active+changeSafeMode+insertBottomBtns+messInvert+messCheck+delMessSelected+delMess+insertButton+getIDhref+initProfileTools+'insertButton();'+initReplyBlock+createFormRM+'initReplyBlock()';
+	s.innerHTML = onLoadAllMessages+delComment+elems_PT_active+changeSafeMode+insertBottomBtns+messInvert+messCheck+delMessSelected+delMess+insertButton+getIDhref+initProfileTools+'insertButton();'+initReplyBlock+createFormRM+'initReplyBlock()';
 	document.body.appendChild(s);
 
 	var tmp_elem = document.createElement('div');
