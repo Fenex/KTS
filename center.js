@@ -102,10 +102,10 @@ function insertScriptsOnTab(tabId, url) {
 				chrome.extension.sendRequest({reason: "kts_user_stats_img", mode: mode, userid: userid}, function(response) {
 					var popalert = document.getElementById('popalert');
 					if(popalert) {
-						document.getElementById('popalert-content').innerHTML = '<center><b>KlavoTools</b></center><br />Создание линейтки рекордов скоро завершится и будет доступно по адресу:<br /><a href="'+response.answer+'">' + response.answer+"</a>";
+						document.getElementById('popalert-content').innerHTML = '<center><b>KlavoTools</b></center><br />Создание линейки рекордов скоро завершится и будет доступно по адресу:<br /><a href="'+response.answer+'">' + response.answer+"</a>";
 						popalert.style.display = '';
 					} else {
-						alert("KlavoTools\r\n\r\nСоздание линейтки рекордов скоро завершится и будет доступно по адресу:\r\n" + response.answer);
+						alert("KlavoTools\r\n\r\nСоздание линейки рекордов скоро завершится и будет доступно по адресу:\r\n" + response.answer);
 					}
 				});
 			}, 1000);
