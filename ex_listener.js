@@ -45,6 +45,34 @@ function closeNotifMsg() {
 	}
 }
 
+function uploadCSV(params) {
+	ktslog('uploadCSV');
+	ktslog(params);
+	new Ajax.Request('http://klavogonki.ru/profile/'+params.userid+'/'+params.mode+'.csv', {
+		parameters: {
+			KTS_REQUEST: '1',
+			method: 'GET'
+		},
+		onSuccess: function(transport)
+		{
+			new Ajax.Request('http://net.lib54.ru/KTS/userStats.php', {
+				parameters: {
+					userid: params.userid,
+					mode: params.mode,
+					method: 'POST',
+					data: transport.responseText
+				},
+				onSuccess: function(transport){ktslog(transport.responseText);}
+			});
+			
+			ktslog('uploadCSV SUCCESS');
+			//ktslog(transport.responseText);
+		}
+	});
+	
+	return "http://net.lib54.ru/KTS/userstats/" + params.userid + "_" + params.mode + ".png";
+}
+
 chrome.extension.onRequest.addListener(
 function(request, sender, sendResponse) {
 	if(t(userid)) {
@@ -132,6 +160,11 @@ function(request, sender, sendResponse) {
 		    		sendResponse({answer: 'ok', id: json.id});
 		    }});
     break;
+	case "kts_user_stats_img":
+		ktslog('ex_listener');
+		var answer = uploadCSV(request);
+		sendResponse({answer: answer});
+	break;
     default:
         sendResponse({answer: 'error'});
     break;

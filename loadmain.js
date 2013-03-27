@@ -8,8 +8,9 @@ function rememberSettings() {
     localStorage['settings'] = JSON.stringify(KlavoTools);
 }
 
+var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 14060;
+var KTS_ver = 14100;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 60 * 1000; //1min

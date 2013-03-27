@@ -1,6 +1,5 @@
 ﻿var Mail = {};
 Mail.count = 0;
-var userid = false;
 var islogined = false;
 var KTS_mail_listener = false;
 

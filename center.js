@@ -67,6 +67,54 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/tagHide.user.js'});
 		//checkUserId();
 	}
+	
+	var _id = url.match(/klavogonki\.ru\/profile\/([\d]+)\/stats/);
+	ktslog(_id);
+	if(_id && _id[1]==userid) {
+		ktslog('_id == userid: ok');
+		function KlavoTools_userStats() {
+			var e = document.getElementById('export_help').parentNode.parentNode.parentNode.getElementsByTagName('dd')[0].getElementsByTagName('a');
+			if(e.length != 2)
+				return;
+			var a = document.createElement('a');
+			a.innerHTML = 'IMG';
+			a.setAttribute('style', 'padding-left: 20px; margin-right: 10px; cursor: pointer;background: transparent url(http://net.lib54.ru/img/icon_stats.png) no-repeat 0% 0%; padding-left: 20px;margin-left:10px;text-decoration: underline;');
+			a.id = 'kts_stats_button';
+			a.setAttribute('title', 'Создание линейки рекордов');
+			a.addEventListener('click', function(e) {
+											var url = location.href.match(/klavogonki\.ru\/profile\/([\d]+)\/stats(?:.+gametype=([a-z\-\d]+))?/);
+											if(url && url[1]) {
+												e.toElement.setAttribute('kts-userid', url[1]);
+												e.toElement.setAttribute('kts-mode', url[2] ? url[2] : 'normal');
+												e.toElement.setAttribute('kts-clicked', 'clicked');
+											}
+										});
+										
+			e[0].parentNode.insertBefore(a, e[1].nextSimbling);
+			
+			setInterval(function() {
+				var elem = document.getElementById('kts_stats_button');
+				if(!elem || !elem.hasAttribute('kts-clicked'))
+					return;
+				elem.removeAttribute('kts-clicked');
+				var mode = elem.getAttribute('kts-mode');
+				var userid = elem.getAttribute('kts-userid');
+				chrome.extension.sendRequest({reason: "kts_user_stats_img", mode: mode, userid: userid}, function(response) {
+					var popalert = document.getElementById('popalert');
+					if(popalert) {
+						document.getElementById('popalert-content').innerHTML = '<center><b>KlavoTools</b></center><br />Создание линейтки рекордов скоро завершится и будет доступно по адресу:<br /><a href="'+response.answer+'">' + response.answer+"</a>";
+						popalert.style.display = '';
+					} else {
+						alert("KlavoTools\r\n\r\nСоздание линейтки рекордов скоро завершится и будет доступно по адресу:\r\n" + response.answer);
+					}
+				});
+			}, 1000);
+		}
+		
+		chrome.tabs.executeScript(tabId, {code: '('+KlavoTools_userStats+')()'});
+		
+	}
+	
 //	if(/klavogonki\.ru\/profile\/82885/.test(url)) {
 //		chrome.tabs.executeScript(tabId, {code: ''});
 //	}
