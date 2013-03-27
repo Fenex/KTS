@@ -10,7 +10,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 14100;
+var KTS_ver = 14101;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 60 * 1000; //1min
