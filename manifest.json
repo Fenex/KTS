@@ -1,7 +1,7 @@
 {
   "name": "KlavoTools",
   "manifest_version": 2,
-  "version": "1.4.2.1",
+  "version": "1.4.3.0",
   "description": "Useful addons for klavogonki.ru",
   "browser_action": {
     "default_popup": "popup.html",
@@ -12,7 +12,7 @@
   },
   "options_page": "opt.html",
   "permissions": [
-    "tabs", "http://*/*", "notifications"
+    "tabs", "http://*/*", "notifications", "contextMenus"
   ],
   "content_scripts": [ {
       "all_frames": true,
@@ -31,6 +31,12 @@
       "js": [ "c_mail.js" ],
       "matches": [ "http://klavogonki.ru/*" ],
       "run_at": "document_idle"
+    },
+    {
+      "all_frames": true,
+      "js": [ "beforeContextMenu.js" ],
+      "matches": [ "http://*/*" ],
+      "run_at": "document_start"
     }
    ],
   "icons": {
