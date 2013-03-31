@@ -9,6 +9,8 @@ function insertScriptsOnTab(tabId, url) {
 	
 	if (/klavogonki\.ru\/gamelist/.test(url)) {
 		//chrome.tabs.executeScript(tabId, {file: 'userjs/chat.js'});
+		if(KlavoTools.userjs.RecentGames)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
 		if(KlavoTools.userjs.chat2BBCode)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/chat2BBcode.user.js'});
 		//if(KlavoTools.userjs.restoreChat)
@@ -40,11 +42,14 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/nec.user.js'});
 		if(KlavoTools.userjs.timeout_alert)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/timeout_alert.user.js'});
+		if(KlavoTools.userjs.RecentGames)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
 		
 	}
 	else if(/klavogonki\.ru\/profile/.test(url)) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/count_FriendsVocs.user.js'});
 		chrome.tabs.executeScript(tabId, {file: 'userjs/BB-Tools.user.js'});
+		chrome.tabs.executeScript(tabId, {file: 'userjs/CalcMaxResult_Qual.user.js'});
 		if(KlavoTools.userjs.ProfileTools)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/ProfileTools.user.js'});
 	}
@@ -56,6 +61,7 @@ function insertScriptsOnTab(tabId, url) {
 	}
 	else if(/klavogonki\.ru\/vocs/.test(url)) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/BB-Tools.user.js'});
+		chrome.tabs.executeScript(tabId, {file: 'userjs/avgSize_BookPart.user.js'});
 		if(KlavoTools.userjs.QuickVocsStart)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/QuickVocsStart.user.js'});
 	}
@@ -63,12 +69,14 @@ function insertScriptsOnTab(tabId, url) {
 	if(/klavogonki\.ru/.test(url)) {
 		if(KlavoTools.userjs.KlavoEvents)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/KlavoEvents.user.js'});
+		if(KlavoTools.userjs.DailyScores)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/DailyScores.user.js'});
 		if(KlavoTools.userjs.CustomHide)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/tagHide.user.js'});
-		//checkUserId();
 	}
 	
-	var _id = url.match(/klavogonki\.ru\/profile\/([\d]+)\/stats/);
+	//линейка рекордов
+	var _id = url.match(/klavogonki\.ru\/profile\/([\d]+)\/stats/); 
 	ktslog(_id);
 	if(_id && _id[1]==userid) {
 		ktslog('_id == userid: ok');
@@ -108,7 +116,7 @@ function insertScriptsOnTab(tabId, url) {
 						alert("KlavoTools\r\n\r\nСоздание линейки рекордов скоро завершится и будет доступно по адресу:\r\n" + response.answer);
 					}
 				});
-			}, 1000);
+			}, 2000);
 		}
 		
 		chrome.tabs.executeScript(tabId, {code: '('+KlavoTools_userStats+')()'});

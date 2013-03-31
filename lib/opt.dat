@@ -119,11 +119,18 @@
 			"description": "Защита от вылетов при нажатии Backspace в конце заезда (Backspace не будет выполнять функцию «Назад» в заездах)"
 		},
 		{
-			"id": "timeout_alert",
-			"name": "AlertStartGame",
+			"id": "RecentGames",
+			"name": "RecentGames",
 			"enabled": true,
 			"visible": true,
-			"description": "Напоминает за 10 секунд до старта заезда с таймаутом более 45 секунд звуковым оповещением."
+			"description": "Быстрый способ создания заедов на основе прошлых заездов"
+		},
+		{
+			"id": "DailyScores",
+			"name": "DailyScores",
+			"enabled": true,
+			"visible": true,
+			"description": "Отображает прибавленные очки \"за день\" на юзерпанели"
 		}
 	],
 	"menu": [
