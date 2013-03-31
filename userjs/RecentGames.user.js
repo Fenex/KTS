@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Klavogonki: recent games
 // @namespace     klavogonki
-// @version       1.1 KTS
+// @version       1.2 KTS
 // @description   list of recent games
 // @include       http://klavogonki.ru/gamelist/
 // @include       http://klavogonki.ru/g/*
@@ -100,7 +100,7 @@ function main(){
             if (!(game && game.params)) return;
             clearInterval(timer);
             
-            if (game.params.regular_competition || !maxGameCount || !game.params.gametype_clean) return;
+            if (game.params.competition || !maxGameCount || !game.params.gametype_clean) return;
             
             var lastGameParams = {
                 gametype: game.params.gametype_clean,
@@ -317,11 +317,9 @@ function execScript(source) {
 if(!document.getElementById('KTS_RecentGames')) {
 	addScript('var recentGames;\n' + getRecentGames + indexOfRecentGameId + deleteRecentGame + pinRecentGame + sortableRecentGames);
 	execScript(main);
-
+	
 	var tmp_elem = document.createElement('div');
 	tmp_elem.id = 'KTS_RecentGames';
 	tmp_elem.style.display = 'none';
 	document.body.appendChild(tmp_elem);	
 }
-
-
