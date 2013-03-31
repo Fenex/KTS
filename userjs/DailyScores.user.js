@@ -92,4 +92,12 @@ function contentEval(source) {
     script.innerHTML = source;
     document.body.appendChild(script);
 }
-contentEval(main);
+
+if(!document.getElementById('KTS_DailyScores')) {
+	contentEval(main);
+
+	var tmp_elem = document.createElement('div');
+	tmp_elem.id = 'KTS_DailyScores';
+	tmp_elem.style.display = 'none';
+	document.body.appendChild(tmp_elem);	
+}

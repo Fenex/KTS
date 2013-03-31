@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Klavogonki: recent games
 // @namespace     klavogonki
-// @version       1.1
+// @version       1.1 KTS
 // @description   list of recent games
 // @include       http://klavogonki.ru/gamelist/
 // @include       http://klavogonki.ru/g/*
@@ -314,5 +314,14 @@ function execScript(source) {
     document.body.appendChild(script);
 }
 
-addScript('var recentGames;\n' + getRecentGames + indexOfRecentGameId + deleteRecentGame + pinRecentGame + sortableRecentGames);
-execScript(main);
+if(!document.getElementById('KTS_RecentGames')) {
+	addScript('var recentGames;\n' + getRecentGames + indexOfRecentGameId + deleteRecentGame + pinRecentGame + sortableRecentGames);
+	execScript(main);
+
+	var tmp_elem = document.createElement('div');
+	tmp_elem.id = 'KTS_RecentGames';
+	tmp_elem.style.display = 'none';
+	document.body.appendChild(tmp_elem);	
+}
+
+
