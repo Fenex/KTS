@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name          Klavogonki: recent games
 // @namespace     klavogonki
-// @version       1.2 KTS
+// @version       1.3 KTS
 // @description   list of recent games
+// @include       http://klavogonki.ru/
 // @include       http://klavogonki.ru/gamelist/
 // @include       http://klavogonki.ru/g/*
 // @author        Lexin
@@ -94,6 +95,20 @@ function main(){
         return n;
     }
     
+    function createHistoryContainer() {
+        recentGames = getRecentGames();
+        var pinGameCount = getPinGameCount(recentGames);
+        var div = document.createElement('div');
+        div.id = 'recent-games-container';
+
+        for (var i = 0; i < recentGames.length && i < maxGameCount + pinGameCount; i++) {
+            addGameLink(div, recentGames[i], i);
+        }
+        div.innerHTML = '<ul id="recent-games">' + div.innerHTML + '</ul><div style="clear:both;"></div>';
+
+        return div;   
+    }
+
     if (/http:\/\/klavogonki.ru\/g\/\?gmid=/.test(location.href)){
         var timer;
         function handler(){
@@ -145,17 +160,14 @@ function main(){
         timer = setInterval(handler, 1000);
     }
     
+    if (/^http:\/\/klavogonki.ru\/$/.test(location.href)) {
+        var div = createHistoryContainer();
+        var e = document.getElementById('head');
+        e.appendChild(div);
+        sortableRecentGames();
+    }
+
     if (/http:\/\/klavogonki.ru\/gamelist\//.test(location.href)) {
-        recentGames = getRecentGames();
-        var pinGameCount = getPinGameCount(recentGames);
-        var div = document.createElement('div');
-        div.id = 'recent-games-container';
-        
-        for (var i = 0; i < recentGames.length && i < maxGameCount + pinGameCount; i++) {
-            addGameLink(div, recentGames[i], i);
-        }
-        div.innerHTML = '<ul id="recent-games">' + div.innerHTML + '</ul><div style="clear:both;"></div>';
-        
         var opt = document.createElement('span');
         opt.id = 'recent-games-options';
         
@@ -189,7 +201,8 @@ function main(){
         opt.appendChild(dec);
         opt.appendChild(count);
         opt.appendChild(inc);
-        
+
+        var div = createHistoryContainer();
         var e = document.getElementsByClassName('gamelist-create')[0];
         e.appendChild(div);
         e.getElementsByTagName('form')[0].appendChild(opt);
