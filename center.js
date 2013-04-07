@@ -65,7 +65,11 @@ function insertScriptsOnTab(tabId, url) {
 		if(KlavoTools.userjs.QuickVocsStart)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/QuickVocsStart.user.js'});
 	}
-
+	else if(/klavogonki\.ru($|\/$|\/?\?)/.test(url)) { //injecting into the main page only
+		if(KlavoTools.userjs.RecentGames)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
+	}
+	
 	if(/klavogonki\.ru/.test(url)) {
 		if(KlavoTools.userjs.KlavoEvents)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/KlavoEvents.user.js'});

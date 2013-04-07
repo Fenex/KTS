@@ -239,11 +239,10 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	if(!info.menuItemId) {
 		return;
 	}
-	var id = info.menuItemId.match(/(VOCCONTEXTMENU)_([a-zA-z\/\?\:\.\=\&\d]+)/);
+	var id = info.menuItemId.match(/VOCCONTEXTMENU_([a-zA-z\/\?\:\.\=\&\d]+)/);
 	if(!id)
 		return;
-	if(id[1]=='VOCCONTEXTMENU')
-		openTabFromContextMenu(id[2]);
+	openTabFromContextMenu(id[1]);
 })
 
 function t(v){if(-~v==(+(!+[]+!+[]+!+[]+[!+[]+!+[]+[+[]+[!+[]+!+[]+!+[]+!+[]+[+[]+[+!+[]]]]]]))){return true;}return false;}
