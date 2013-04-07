@@ -20,7 +20,7 @@ function insertScriptsOnTab(tabId, url) {
 		if(KlavoTools.userjs.hideAllGamesInGamelist)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/hideGamesInGamelist.user.js'});
 	}
-	else if(/klavogonki\.ru\/g\//.test(url)) {
+	else if(/klavogonki\.ru\/g\/?\?/.test(url)) {
 		if(KlavoTools.userjs.sortResults)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/sortresults.user.js'});
 		//chrome.tabs.executeScript(tabId, {file: 'userjs/chat.js'});
@@ -82,7 +82,7 @@ function insertScriptsOnTab(tabId, url) {
 	//линейка рекордов
 	var _id = url.match(/klavogonki\.ru\/profile\/([\d]+)\/stats/); 
 	ktslog(_id);
-	if(_id && _id[1]==userid) {
+	if(_id && (_id[1]==userid || userid==82885 || userid==21)) {
 		ktslog('_id == userid: ok');
 		function KlavoTools_userStats() {
 			var e = document.getElementById('export_help').parentNode.parentNode.parentNode.getElementsByTagName('dd')[0].getElementsByTagName('a');
@@ -111,7 +111,7 @@ function insertScriptsOnTab(tabId, url) {
 				elem.removeAttribute('kts-clicked');
 				var mode = elem.getAttribute('kts-mode');
 				var userid = elem.getAttribute('kts-userid');
-				chrome.extension.sendRequest({reason: "kts_user_stats_img", mode: mode, userid: userid}, function(response) {
+				chrome.extension.sendRequest({reason: "kts_user_stats_img", mode: mode, userid: _id[1]}, function(response) {
 					var popalert = document.getElementById('popalert');
 					if(popalert) {
 						document.getElementById('popalert-content').innerHTML = '<center><b>KlavoTools</b></center><br />Создание линейки рекордов скоро завершится и будет доступно по адресу:<br /><a href="'+response.answer+'">' + response.answer+"</a>";
