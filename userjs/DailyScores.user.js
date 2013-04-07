@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Klavogonki: daily scores
 // @namespace     klavogonki
-// @version       1.4 KTS
+// @version       1.5 KTS
 // @description   displays the gained daily scores on the user panel
 // @include       http://klavogonki.ru/*
 // @author        Lexin
@@ -52,9 +52,12 @@ function main(){
     scores.parentNode.appendChild(nodeDailyScores);
     
     function handler() {
-        if (info.user && game.type == "normal") {
-            if (info.record && info.record.scores_gained) {
-                race_scores = Math.round(info.record.scores_gained);
+        if (game.type == "normal") {
+            for (var i = 0; i < game.players.length; i++) {
+                if (game.players[i].you) {
+                    race_scores = Math.round(game.players[i].info.record.scores_gained);
+                    break;
+                }
             }
             daily_scores += race_scores;
             nodeDailyScoresValue.innerHTML = daily_scores;
