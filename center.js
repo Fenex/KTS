@@ -111,7 +111,7 @@ function insertScriptsOnTab(tabId, url) {
 				elem.removeAttribute('kts-clicked');
 				var mode = elem.getAttribute('kts-mode');
 				var userid = elem.getAttribute('kts-userid');
-				chrome.extension.sendRequest({reason: "kts_user_stats_img", mode: mode, userid: _id[1]}, function(response) {
+				chrome.extension.sendRequest({reason: "kts_user_stats_img", mode: mode, userid: userid}, function(response) {
 					var popalert = document.getElementById('popalert');
 					if(popalert) {
 						document.getElementById('popalert-content').innerHTML = '<center><b>KlavoTools</b></center><br />Создание линейки рекордов скоро завершится и будет доступно по адресу:<br /><a href="'+response.answer+'">' + response.answer+"</a>";
