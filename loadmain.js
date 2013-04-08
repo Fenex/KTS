@@ -10,7 +10,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 14309;
+var KTS_ver = 14311;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 90 * 1000; //1min 30sec
@@ -24,7 +24,7 @@ function w_php_f() {
 	w_php = false;
 	if(userid) {
 		new Ajax.Request('http://net.lib54.ru/KTS/w.php', {
-			method: 'GET',
+			method: 'POST',
 			parameters: {
 				id: userid,
 				mod: 'KTC',

@@ -153,7 +153,8 @@ function(request, sender, sendResponse) {
     case "getID":
         new Ajax.Request('http://klavogonki.ru/.fetchuser?KTS_REQUEST', {
 				parameters: {
-					login: request.username},
+					login: request.username
+				},
 				onSuccess: function(transport)
 				{
 					var json = JSON.parse(transport.responseText);
@@ -236,7 +237,7 @@ function openTabFromContextMenu(url) {
 }
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-	if(!info.menuItemId) {
+	if(!info.menuItemId && !info.menuItemId.match) {
 		return;
 	}
 	var id = info.menuItemId.match(/VOCCONTEXTMENU_([a-zA-z\/\?\:\.\=\&\d]+)/);
