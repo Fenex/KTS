@@ -31,7 +31,7 @@
 			"id": "KlavoEvents",
 			"name": "KlavoEvents",
 			"enabled": true,
-			"visible": true,
+			"visible": false,
 			"description": "Лента событий — список предстоящих и прошедших мероприятий"
 		},
 		{

@@ -71,8 +71,8 @@ function insertScriptsOnTab(tabId, url) {
 	}
 	
 	if(/klavogonki\.ru/.test(url)) {
-		if(KlavoTools.userjs.KlavoEvents)
-			chrome.tabs.executeScript(tabId, {file: 'userjs/KlavoEvents.user.js'});
+		//if(KlavoTools.userjs.KlavoEvents)
+		//	chrome.tabs.executeScript(tabId, {file: 'userjs/KlavoEvents.user.js'});
 		if(KlavoTools.userjs.DailyScores)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/DailyScores.user.js'});
 		if(KlavoTools.userjs.CustomHide)

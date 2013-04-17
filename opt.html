@@ -87,7 +87,7 @@
 		<b>Скрипты:</b>
 		<form id="KTS_scripts">
 		<table border><tbody>
-			<tr ng-repeat="script in settings.scripts">
+			<tr ng-repeat="script in settings.scripts" style="{{script.visible}}">
 				<td>
 					<input type="checkbox" id="{{script.id}}" name="{{script.id}}" checked="{{script.enabled}}" class="user_set" />
 				</td>
