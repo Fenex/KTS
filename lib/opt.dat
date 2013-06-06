@@ -131,6 +131,13 @@
 			"enabled": true,
 			"visible": true,
 			"description": "Отображает прибавленные очки \"за день\" на юзерпанели"
+		},
+		{
+			"id": "timeout_alert",
+			"name": "AlertStartGame",
+			"enabled": true,
+			"visible": false,
+			"description": "Звуковое оповещение о старте игры"
 		}
 	],
 	"menu": [

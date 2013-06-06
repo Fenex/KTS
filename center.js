@@ -40,8 +40,8 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/AntiBackspace.js'});
 		if(KlavoTools.userjs.NEC)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/nec.user.js'});
-		if(KlavoTools.userjs.timeout_alert)
-			chrome.tabs.executeScript(tabId, {file: 'userjs/timeout_alert.user.js'});
+		//if(KlavoTools.userjs.timeout_alert)
+		//	chrome.tabs.executeScript(tabId, {file: 'userjs/timeout_alert.user.js'});
 		if(KlavoTools.userjs.RecentGames)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
 		

@@ -1,11 +1,11 @@
 {
   "name": "KlavoTools",
   "manifest_version": 2,
-  "version": "1.4.3.12",
+  "version": "1.4.3.14",
   "description": "Useful addons for klavogonki.ru",
   "browser_action": {
     "default_popup": "popup.html",
-    "default_icon": "img/icon/normal.png"
+    "default_icon": "img/icon/digits.png"
   },
   "background": {
     "page": "bg.html"
