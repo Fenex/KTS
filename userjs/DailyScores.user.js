@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Klavogonki: daily scores
 // @namespace     klavogonki
-// @version       1.4 KTS
+// @version       2.0 KTS
 // @description   displays the gained daily scores on the user panel
 // @include       http://klavogonki.ru/*
 // @author        Lexin
@@ -10,6 +10,15 @@
 // ==/UserScript==
 
 function main(){
+
+    var daily_scores = 0;
+    var daily_scores_deducted = 0;
+    var race_scores = 0;
+    var daily_scores_start_rating = 0;
+    var daily_scores_last_level = 0;
+    var daily_scores_last_levels_rating
+    var daily_scores_start_level_rating = 0;
+    var daily_scores_rating = 0;
     
     function shiftTime(date){
         date.setUTCHours(date.getUTCHours() - 1);
@@ -17,47 +26,187 @@ function main(){
         return date;
     }
     
+    function isToday() {
+        if (!localStorage['last_race_date']) {
+        	return false;
+        }
+        
+        var lastRaceDate = new Date();
+        lastRaceDate.setTime(localStorage['last_race_date']);
+        lastRaceDate = shiftTime(lastRaceDate); 
+        
+        var now = shiftTime(new Date());
+        return lastRaceDate.getUTCFullYear() === now.getUTCFullYear() 
+        	&& lastRaceDate.getUTCMonth() === now.getUTCMonth() 
+            && lastRaceDate.getUTCDate() === now.getUTCDate();
+    }
+    
+    function getCurrentRating() {
+        var s = $('userpanel-level').getAttribute('original-title');
+        var re = /\d+/g; 
+        var value = re.exec(s); 
+
+        return parseInt(value, 10);
+    }
+    
+    function getCurrentLevelRating() {
+        var s = $('userpanel-level').getAttribute('original-title');
+        var re = /\d+/g; 
+        var value = re.exec(s); 
+        value = re.exec(s); 
+
+        return parseInt(value, 10);
+    }
+    
+    function getCurrentLevel() {
+        s = $('userpanel-level-value').innerHTML;
+        return parseInt(s, 10);
+    }
+    
+    function getDailyRating() {
+        var currentLevel = getCurrentLevel();
+
+        if (currentLevel > daily_scores_last_level) {
+            daily_scores_last_levels_rating += getCurrentLevelRating();
+            daily_scores_last_level = currentLevel;
+        }    
+        return daily_scores_last_levels_rating - getCurrentLevelRating() - daily_scores_start_rating + getCurrentRating();
+    }
+    
+    function getFormattedNumber(value) {
+        return ((value > 0) ? '+' : '') + value;
+    }
+    
+    function updatePanel() {
+        nodeCaption.innerHTML = '<span id="daily-scores-caption" style="padding-left:5px;">За день:</span>';
+        nodeDailyScoresValue.id = 'daily-scores';
+        nodeDailyScoresValue.setAttribute('style','color:#B7FFB3; font-weight:bold; font-size:14px;');
+        nodeDailyScoresValue.innerHTML = (daily_scores ? '+' : '') + daily_scores;
+        
+        nodeDailyScoresDeductedValue.id = 'daily-scores-deducted';
+        nodeDailyScoresDeductedValue.setAttribute('style','color:#B7FFB3; font-weight:bold; font-size:14px;');
+        if (daily_scores_deducted) {
+            nodeDailyScoresDeductedValue.innerHTML = '-' + daily_scores_deducted;
+        }
+    
+        nodeRatingCaption.innerHTML = '<span id="daily-rating-caption" style="padding-left:5px;">Рейтинг:</span>';
+        nodeDailyRating.id = 'daily-rating';
+        nodeDailyRating.setAttribute('style', 'text-align: left;');
+        nodeDailyRatingValue.setAttribute('style','color:#F9DD80; font-weight:bold; font-size:14px;');
+        
+        nodeDailyRatingValue.innerHTML = getFormattedNumber(getDailyRating());
+            
+        nodeDailyScores.appendChild(nodeDailyScoresValue);
+        nodeDailyScoresDeducted.appendChild(nodeDailyScoresDeductedValue);
+        scores.parentNode.appendChild(nodeCaption);
+        scores.parentNode.appendChild(nodeDailyScores);
+        scores.parentNode.appendChild(nodeDailyScoresDeducted);
+
+        nodeDailyRating.appendChild(nodeDailyRatingValue);
+        bonus.parentNode.appendChild(nodeRatingCaption);
+        bonus.parentNode.appendChild(nodeDailyRating);
+    }
+    
     var scores = $('userpanel-scores-container');
+    var bonus = $('userpanel-bonuses');
+
     if (!scores)
         return;
     
-    var daily_scores = 0;
-    var race_scores = 0;
     var nodeCaption = document.createElement('td');
     var nodeDailyScores = document.createElement('td');
     var nodeDailyScoresValue = document.createElement('span');
+    var nodeDailyScoresDeducted = document.createElement('td');
+    var nodeDailyScoresDeductedValue = document.createElement('span');
+    var nodeRatingCaption = document.createElement('td');
+    var nodeDailyRating = document.createElement('td');
+    var nodeDailyRatingValue = document.createElement('span');
     
-    if (localStorage['daily_scores'] && localStorage['last_race_date']) {
-        var lastRaceDate = new Date();
-        lastRaceDate.setTime(localStorage['last_race_date']);
-        lastRaceDate = shiftTime(lastRaceDate);
-        
-        var now = new Date();
-        now = shiftTime(now);
-        
-        if (lastRaceDate.getUTCFullYear() == now.getUTCFullYear() && lastRaceDate.getUTCMonth() == now.getUTCMonth() && lastRaceDate.getUTCDate() == now.getUTCDate()) {
+    if (isToday()) {
+	    if (localStorage['daily_scores']) {    
             daily_scores = parseInt(localStorage['daily_scores'], 10);
+        }
+        if (localStorage['daily_scores_deducted']) {
+            daily_scores_deducted = parseInt(localStorage['daily_scores_deducted'], 10);
+        }
+        if (localStorage['daily_scores_start_rating']) {
+        	daily_scores_start_rating = parseInt(localStorage['daily_scores_start_rating'], 10);
+        }
+        if (localStorage['daily_scores_last_level']) {
+        	daily_scores_last_level = parseInt(localStorage['daily_scores_last_level'], 10);
+        }
+        if (localStorage['daily_scores_last_levels_rating']) {
+        	daily_scores_last_levels_rating = parseInt(localStorage['daily_scores_last_levels_rating'], 10);
+        }
+        if (localStorage['daily_scores_start_level_rating']) {
+        	daily_scores_start_level_rating = parseInt(localStorage['daily_scores_start_level_rating'], 10);
         }
     }
     
-    nodeCaption.innerHTML = '<span id="daily-scores-caption" style="padding-left:5px;">За день:</span>';
-    nodeDailyScoresValue.id = 'daily-scores';
-    nodeDailyScoresValue.style.color = '#B7FFB3';
-    nodeDailyScoresValue.style.fontWeight = 'bold';
-    nodeDailyScoresValue.style.fontSize = '14px';
-    nodeDailyScoresValue.innerHTML = daily_scores;
+    if (!daily_scores_start_rating) {
+        daily_scores_start_rating = getCurrentRating();
+        localStorage['daily_scores_start_rating'] = daily_scores_start_rating;
+    }
+    if (!daily_scores_last_level) {
+        daily_scores_last_level = getCurrentLevel();
+        localStorage['daily_scores_last_level'] = daily_scores_last_level;
+    }
+    if (!daily_scores_last_levels_rating) {
+        daily_scores_last_levels_rating = getCurrentLevelRating();
+        localStorage['daily_scores_last_levels_rating'] = daily_scores_last_levels_rating;
+    }
+    if (!daily_scores_start_level_rating) {
+        daily_scores_start_level_rating = getCurrentLevelRating();
+        localStorage['daily_scores_start_level_rating'] = daily_scores_start_level_rating;
+    }
     
-    nodeDailyScores.appendChild(nodeDailyScoresValue);
-    scores.parentNode.appendChild(nodeCaption);
-    scores.parentNode.appendChild(nodeDailyScores);
+    updatePanel();
+
+    var MutationObserver = window.MutationObserver ||
+                           window.WebKitMutationObserver ||
+                           window.MozMutationObserver;
     
-    function handler() {
-        if (info.user && game.type == "normal") {
-            if (info.record && info.record.scores_gained) {
-                race_scores = Math.round(info.record.scores_gained);
+    function scoresChangeHandler() {
+        if (game.type == "normal") {
+            for (var i = 0; i < game.players.length; i++) {
+                if (game.players[i].you) {
+                    race_scores = Math.round(game.players[i].info.record.scores_gained);
+                    break;
+                }
             }
+            
+            if (game.params.competition) {
+    			var player = $$('.player.you');
+                if (player) {
+                	player = player[0];
+                	console.log(player);
+                    
+                    var currentRating = getDailyRating();
+                    var ratingObserver = new MutationObserver(
+                        function(mutations) {
+                            mutations.forEach(function(mutation) {
+                                if (mutation.addedNodes) {
+                                    for (var i = 0; i < mutation.addedNodes.length; i++){
+                                        if (mutation.addedNodes[i].hasClassName('rating_gained')) {
+                                            currentRating += parseInt(mutation.addedNodes[i].innerHTML, 10);
+                                            nodeDailyRatingValue.innerHTML = getFormattedNumber(currentRating);
+                                            ratingObserver.disconnect();
+                                        }
+                                    }
+                                }
+                            });
+                    });
+                    
+                    ratingObserver.observe(player, {
+                        characterData: false,
+                        subtree: true,
+                        childList: true
+                    });
+                }
+            }
+            
             daily_scores += race_scores;
-            nodeDailyScoresValue.innerHTML = daily_scores;
+            nodeDailyScoresValue.innerHTML = '+' + daily_scores;
             if (race_scores != 0) {
                 nodeDailyScores.innerHTML += '<span id="race-scores" style="color:#B7FFB3; padding-left:5px; font-size:9px; font-weight:bold; position:relative; top:-1px;">(' + race_scores + ')</span>';
             }
@@ -67,20 +216,32 @@ function main(){
         }
     };
     
-    var MutationObserver = window.MutationObserver ||
-                           window.WebKitMutationObserver ||
-                           window.MozMutationObserver;
     var observer = new MutationObserver(
         function(mutations) {
             observer.disconnect();
-            handler();
+            scoresChangeHandler();
     });
     
     observer.observe(scores, {
         characterData: true,
         subtree: true,
         childList: true
-    });  
+    });
+    
+    if (/http:\/\/klavogonki.ru\/g\/\?gmid=/.test(location.href)){
+        var timer;
+        function handler(){
+            if (!(game && game.params)) return;
+            clearInterval(timer);
+            
+            if (game.params.competition) {
+                daily_scores_deducted += 150;
+                nodeDailyScoresDeductedValue.innerHTML = '-' + daily_scores_deducted;
+            	localStorage['daily_scores_deducted'] = daily_scores_deducted;
+            }
+        };
+        timer = setInterval(handler, 1000);
+    }
 }
 function contentEval(source) {
     if (typeof source == 'function') {
