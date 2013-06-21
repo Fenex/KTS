@@ -44,7 +44,7 @@ function insertScriptsOnTab(tabId, url) {
 		//	chrome.tabs.executeScript(tabId, {file: 'userjs/timeout_alert.user.js'});
 		if(KlavoTools.userjs.RecentGames)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
-		if(KlavoTools.usrjs.save_race_in_blog)
+		if(KlavoTools.userjs.save_race_in_blog)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/save_race_in_blog.user.js'});
 		
 	}
