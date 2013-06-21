@@ -154,6 +154,13 @@ function main(){
     if (!daily_scores_last_levels_rating) {
         daily_scores_last_levels_rating = getCurrentLevelRating();
         localStorage['daily_scores_last_levels_rating'] = daily_scores_last_levels_rating;
+<<<<<<< HEAD
+    }
+    if (!daily_scores_start_level_rating) {
+        daily_scores_start_level_rating = getCurrentLevelRating();
+        localStorage['daily_scores_start_level_rating'] = daily_scores_start_level_rating;
+=======
+>>>>>>> 599b59ceab1d6f2ffce63f6bc1b59ac1e62a55eb
     }
     if (!daily_scores_start_level_rating) {
         daily_scores_start_level_rating = getCurrentLevelRating();
@@ -166,6 +173,15 @@ function main(){
                            window.WebKitMutationObserver ||
                            window.MozMutationObserver;
     
+<<<<<<< HEAD
+    updatePanel();
+
+    var MutationObserver = window.MutationObserver ||
+                           window.WebKitMutationObserver ||
+                           window.MozMutationObserver;
+    
+=======
+>>>>>>> 599b59ceab1d6f2ffce63f6bc1b59ac1e62a55eb
     function scoresChangeHandler() {
         if (game.type == "normal") {
             for (var i = 0; i < game.players.length; i++) {
@@ -173,6 +189,7 @@ function main(){
                     race_scores = Math.round(game.players[i].info.record.scores_gained);
                     break;
                 }
+<<<<<<< HEAD
             }
             
             if (game.params.competition) {
@@ -205,6 +222,39 @@ function main(){
                 }
             }
             
+=======
+            }
+            
+            if (game.params.competition) {
+    			var player = $$('.player.you');
+                if (player) {
+                	player = player[0];
+                    
+                    var currentRating = getDailyRating();
+                    var ratingObserver = new MutationObserver(
+                        function(mutations) {
+                            mutations.forEach(function(mutation) {
+                                if (mutation.addedNodes) {
+                                    for (var i = 0; i < mutation.addedNodes.length; i++){
+                                        if (mutation.addedNodes[i].hasClassName('rating_gained')) {
+                                            currentRating += parseInt(mutation.addedNodes[i].innerHTML, 10);
+                                            nodeDailyRatingValue.innerHTML = getFormattedNumber(currentRating);
+                                            ratingObserver.disconnect();
+                                        }
+                                    }
+                                }
+                            });
+                    });
+                    
+                    ratingObserver.observe(player, {
+                        characterData: false,
+                        subtree: true,
+                        childList: true
+                    });
+                }
+            }
+            
+>>>>>>> 599b59ceab1d6f2ffce63f6bc1b59ac1e62a55eb
             daily_scores += race_scores;
             nodeDailyScoresValue.innerHTML = '+' + daily_scores;
             if (race_scores != 0) {
