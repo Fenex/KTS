@@ -196,7 +196,6 @@ function main(){
     			var player = $$('.player.you');
                 if (player) {
                 	player = player[0];
-                	console.log(player);
                     
                     var currentRating = getDailyRating();
                     var ratingObserver = new MutationObserver(
@@ -303,10 +302,9 @@ function contentEval(source) {
     script.innerHTML = source;
     document.body.appendChild(script);
 }
-
 if(!document.getElementById('KTS_DailyScores')) {
 	contentEval(main);
-	
+
 	var tmp_elem = document.createElement('div');
 	tmp_elem.id = 'KTS_DailyScores';
 	tmp_elem.style.display = 'none';
