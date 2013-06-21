@@ -138,6 +138,27 @@
 			"enabled": true,
 			"visible": false,
 			"description": "Звуковое оповещение о старте игры"
+		},
+		{
+			"id": "klavostats_links",
+			"name": "klavostats_links",
+			"enabled": true,
+			"visible": true,
+			"description": "Добавляет в профилях прямые ссылки на игрока в КлавоСтатистикe"
+		},
+		{
+			"id": "best5_results_in_profile",
+			"name": "ShowBest5Results",
+			"enabled": true,
+			"visible": true,
+			"description": "Отображает 5 лучших результатов игрока в профиле"
+		},
+		{
+			"id": "save_race_in_blog",
+			"name": "SaveRaceButton_inBlog",
+			"enabled": true,
+			"visible": true,
+			"description": "Добавляет кнопку для сохранения результата любого заезда в бортжурнале"
 		}
 	],
 	"menu": [

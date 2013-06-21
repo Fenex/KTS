@@ -44,6 +44,8 @@ function insertScriptsOnTab(tabId, url) {
 		//	chrome.tabs.executeScript(tabId, {file: 'userjs/timeout_alert.user.js'});
 		if(KlavoTools.userjs.RecentGames)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
+		if(KlavoTools.usrjs.save_race_in_blog)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/save_race_in_blog.user.js'});
 		
 	}
 	else if(/klavogonki\.ru\/profile/.test(url)) {
@@ -52,6 +54,10 @@ function insertScriptsOnTab(tabId, url) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/CalcMaxResult_Qual.user.js'});
 		if(KlavoTools.userjs.ProfileTools)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/ProfileTools.user.js'});
+		if(KlavoTools.userjs.klavostats_links)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/klavostats_links.user.js'});
+		if(KlavoTools.userjs.best5_results_in_profile)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/best5_results_in_profile.user.js'});
 	}
 	else if(/klavogonki\.ru\/forum\/.+/.test(url)) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/ModerTools.user.js'});
@@ -78,6 +84,8 @@ function insertScriptsOnTab(tabId, url) {
 		if(KlavoTools.userjs.CustomHide)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/tagHide.user.js'});
 	}
+	
+	
 	
 	//линейка рекордов
 	var _id = url.match(/klavogonki\.ru\/profile\/([\d]+)\/stats/); 
