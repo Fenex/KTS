@@ -179,7 +179,6 @@ function main(){
     			var player = $$('.player.you');
                 if (player) {
                 	player = player[0];
-                	console.log(player);
                     
                     var currentRating = getDailyRating();
                     var ratingObserver = new MutationObserver(
