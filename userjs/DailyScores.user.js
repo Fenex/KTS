@@ -142,7 +142,10 @@ function main(){
         	daily_scores_start_level_rating = parseInt(localStorage['daily_scores_start_level_rating'], 10);
         }
     }
-    
+
+    if (!daily_scores_deducted) {
+        localStorage['daily_scores_deducted'] = daily_scores_deducted;
+    }
     if (!daily_scores_start_rating) {
         daily_scores_start_rating = getCurrentRating();
         localStorage['daily_scores_start_rating'] = daily_scores_start_rating;
