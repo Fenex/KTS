@@ -46,6 +46,7 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/RecentGames.user.js'});
 		if(KlavoTools.userjs.save_race_in_blog)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/save_race_in_blog.user.js'});
+		chrome.tabs.executeScript(tabId, {file: 'userjs/usergroups.user.js'});
 		
 	}
 	else if(/klavogonki\.ru\/profile/.test(url)) {
@@ -58,6 +59,7 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/klavostats_links.user.js'});
 		if(KlavoTools.userjs.best5_results_in_profile)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/best5_results_in_profile.user.js'});
+		chrome.tabs.executeScript(tabId, {file: 'userjs/usergroups.user.js'});
 	}
 	else if(/klavogonki\.ru\/forum\/.+/.test(url)) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/ModerTools.user.js'});
