@@ -10,7 +10,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 14500;
+var KTS_ver = 14501;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 90 * 1000; //1min 30sec
@@ -65,12 +65,13 @@ if(!localStorage['settings']) {
             AntiBackspace: true,
 			kts_chat: false,
 			NEC: true,
-			timeout_alert: true,
+			timeout_alert: false,
 			RecentGames: true,
 			DailyScores: true,
 			klavostats_links: true,
 			best5_results_in_profile: true,
-			save_race_in_blog: true
+			save_race_in_blog: true,
+			usergroups: true
 		},
 		notifications: {
 			msg: false,
@@ -108,5 +109,9 @@ if(typeof(KlavoTools.userjs.best5_results_in_profile)=='undefined') {
 }
 if(typeof(KlavoTools.userjs.save_race_in_blog)=='undefined') {
     KlavoTools.userjs.save_race_in_blog = true;
+    rememberSettings();
+}
+if(typeof(KlavoTools.userjs.usergroups)=='undefined') {
+    KlavoTools.userjs.usergroups = true;
     rememberSettings();
 }

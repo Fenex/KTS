@@ -159,6 +159,13 @@
 			"enabled": true,
 			"visible": true,
 			"description": "Добавляет кнопку для сохранения результата любого заезда в бортжурнале"
+		},
+		{
+			"id": "usergroups",
+			"name": "UserGroups",
+			"enabled": true,
+			"visible": true,
+			"description": "Позволяет создавать группы и добавлять в них пользователей для рассылки приглашений в игру"
 		}
 	],
 	"menu": [
