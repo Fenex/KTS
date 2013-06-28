@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"styles": [
 		{
@@ -31,7 +32,7 @@
 			"id": "KlavoEvents",
 			"name": "KlavoEvents",
 			"enabled": true,
-			"visible": false,
+			"visible": true,
 			"description": "Лента событий — список предстоящих и прошедших мероприятий"
 		},
 		{
