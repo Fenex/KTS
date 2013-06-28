@@ -3,11 +3,11 @@
 // @namespace      fnx
 // @include        http://klavogonki.ru*
 // @author         Fenex, DIgorevich
-// @version        1.3.4 KTS
+// @version        2.0 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 if(!document.getElementById('KTS_KlavoEvents')) {
-	var str_ver = "var KEobj = new Object();KEobj.ver = '1.3.4';KEobj.mode = 'user';\n";
+	var str_ver = "var KEobj = new Object();KEobj.ver = '2.0';KEobj.mode = 'user';\n";
 	var elem = document.getElementById('head').getElementsByClassName('menu')[0];
 	var createElem = document.createElement('a');
 	createElem.setAttribute('href', 'javascript:changeViewerEvents();');
@@ -93,14 +93,11 @@ if(!document.getElementById('KTS_KlavoEvents')) {
 		$('content_0').show();
 		$('event_load').show();
 		
-		microAjax('http://net.lib54.ru/KTS/KE/', null, function(transport) {
+		microAjax('http://net.lib54.ru/KTS/KE/', {}, function(transport) {
 			function go_next_system(data) {
 				if(!data) {return;}
-				var ver = data.version
-				$('script_ver').innerHTML = '<span title="' + KEobj.ver + ' KTS">Версия скрипта: '+KEobj.ver+ ' KTS <img src="/img/ok.gif" /></span>';
-				//var m = getValueByTag(a, 'message');
-				//if(m)
-				//	insertKE_Message(m);
+				var ver = data.version;
+				$('script_ver').innerHTML = '<span title="' + ver +'">Версия скрипта: '+ver+ '<img src="/img/ok.gif" /></span>';
 			}
 			function createTr(event, i) {				
 				var tr = '<tr>';
