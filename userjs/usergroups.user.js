@@ -5,7 +5,7 @@
 // @include        http://klavogonki.ru/g*
 // @include        http://klavogonki.ru/profile/*
 // @author         Fenex
-// @version        1.0.1 KTS
+// @version        1.0.2 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 
@@ -54,13 +54,9 @@ function exe() {
 			return out;
 		}
 	})
-	.controller('userjsUserInviteController', function($scope, $window) { //controller for invite members of groups (include in game)
+	.controller('userjsUserInviteController', function($scope) { //controller for invite members of groups (include in game)
 		$scope.users = userlist_invite;
 		$scope.groups = [];
-		
-		/*setInterval(function(){
-			console.log($scope.active.group)
-		}, 1000)*/
 		
 		if(localStorage['userjs_usergroups']) {
 			$scope.groups = JSON.parse(localStorage['userjs_usergroups']);
@@ -236,7 +232,7 @@ function exe() {
 			delete localStorage.userjs_usergroups;
 		}
 	});
-	angular.bootstrap(document, ['userjsusergroups']);
+	angular.bootstrap(document.getElementById('userjsusergroups') || document.getElementById('invite'), ['userjsusergroups']);
 
 }
 
@@ -246,6 +242,7 @@ if(document.querySelectorAll('.name a')[0].href.match(/[\d]+/)[0] == location.hr
 var dl = document.createElement('dl');
 dl.setAttribute('ng-app', 'userjsusergroups');
 dl.setAttribute('ng-controller', 'userjsUsergroupsController');
+dl.id = "userjsusergroups";
 dl.innerHTML = '<dt style="cursor:pointer;" title="Открыть редактор групп" ng-init="groupbox = false;" ng-click="groupbox = !groupbox;">Группы:</dt><dd>\
 <ul class="friends-list"><li ng-repeat="group in groups">\
 <a remattr="href" style="cursor:pointer;text-decoration:underline;" title="{{group.members|listmember}}">{{group.name}}<a>\
@@ -287,15 +284,16 @@ var users = [];
 var div = '\
 <table><tbody>\
 <tr ng-repeat="user in users">\
-\
-		<td width="20" align="center">						\
-													<input ng-disabled="user.enable" type="checkbox" class="invite-chk" id="invite-chk-{{user.id}}">\
-											</td>\
-<td><a target="_blank" href="/profile/{{user.id}}/" style="padding-left: 20px; background: transparent url(\'http://img.klavogonki.ru/avatars/{{user.id}}.gif\') no-repeat 0% 0%">{{user.login}}</a></td>\
-					<td align="right">\
-						<img id="invite-img-ok-{{user.id}}" src="/img/ok.gif" style="display:none">\
-						<img id="invite-img-loading-{{user.id}}" src="/img/small_loading.gif" style="display:none">\
-					</td>\
+	<td width="20" align="center">\
+		<input ng-disabled="user.enable" type="checkbox" class="invite-chk" id="invite-chk-{{user.id}}">\
+	</td>\
+	<td>\
+		<a target="_blank" href="/profile/{{user.id}}/" style="padding-left: 20px; background: transparent url(\'http://img.klavogonki.ru/avatars/{{user.id}}.gif\') no-repeat 0% 0%">{{user.login}}</a>\
+	</td>\
+	<td align="right">\
+		<img id="invite-img-ok-{{user.id}}" src="/img/ok.gif" style="display:none">\
+		<img id="invite-img-loading-{{user.id}}" src="/img/small_loading.gif" style="display:none">\
+	</td>\
 </tr>\
 </tbody></table>';
 

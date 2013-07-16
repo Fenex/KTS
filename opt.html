@@ -50,7 +50,7 @@
 	<div id="risovalka" ng-controller="zzzaebizController">
 		<div class="title">Наши потоки подсознания:</div>
 		<div ng-repeat="img in imgs">
-		<a href="http://risovalka.zzzae.biz/gallery/{{img.id}}" /><img src="{{img.url}}" /></a>
+		<a href="http://risovalka.zzzae.biz/gallery/{{img.id}}" /><img ng-src="{{img.url}}" /></a>
 		<div class="author" title="{{img.author}}">{{img.author}}</div>
 		</div>
 	</div>
@@ -60,7 +60,7 @@
 		<b>Стили:</b>
 		<form id="KTS_style">
 			<div ng-repeat="style in settings.styles">
-				<input type="radio" id="KTS_style_radio_{{style.color}}" checked="{{style.active}}" name="KTS_style_radio" value="{{style.color}}" /><label for="KTS_style_radio_{{style.color}}">{{style.name}}</label>
+				<input type="radio" id="KTS_style_radio_{{style.color}}" ng-model="settings.style" name="KTS_style_radio" value="{{style.color}}" /><label for="KTS_style_radio_{{style.color}}">{{style.name}}</label>
 			</div>
 			<input type="radio" id="KTS_style_radio_user" name="KTS_style_radio" disabled value="user" />	<label for="KTS_style_radio_user"><i>[Здесь мог бы быть ваш стиль]</i></label><br />
 		</form>
@@ -69,7 +69,7 @@
 			<table><tr>
 				<td>
 					<div ng-repeat="x in settings.notifications.xRace">
-						<input type="checkbox" id="{{x.value}}" name="{{x.value}}" disabled="{{x.disabled}}" checked="{{x.checked}}" class="user_set" /><label for="{{x.value}}">{{x.text}}</label>
+						<input type="checkbox" id="{{x.value}}" name="{{x.value}}" ng-disabled="x.disabled" ng-checked="x.checked" class="user_set" /><label for="{{x.value}}">{{x.text}}</label>
 					</div>
 				</td>
 				<td><div>Предупреждать за:</div>
@@ -87,9 +87,9 @@
 		<b>Скрипты:</b>
 		<form id="KTS_scripts">
 		<table border><tbody>
-			<tr ng-repeat="script in settings.scripts" style="{{script.visible}}">
+			<tr ng-repeat="script in settings.scripts" ng-show="script.visible">
 				<td>
-					<input type="checkbox" id="{{script.id}}" name="{{script.id}}" checked="{{script.enabled}}" class="user_set" />
+					<input type="checkbox" id="{{script.id}}" name="{{script.id}}" ng-checked="script.enabled" class="user_set" />
 				</td>
 				<td>
 					<label for="{{script.id}}">{{script.name}}</label>
