@@ -58,8 +58,6 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/ProfileTools.user.js'});
 		if(KlavoTools.userjs.klavostats_links)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/klavostats_links.user.js'});
-		if(KlavoTools.userjs.best5_results_in_profile)
-			chrome.tabs.executeScript(tabId, {file: 'userjs/best5_results_in_profile.user.js'});
 		if(KlavoTools.userjs.usergroups)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/usergroups.user.js'});
 	}
