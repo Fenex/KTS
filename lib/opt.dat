@@ -161,36 +161,6 @@
 			"description": "Позволяет создавать группы и добавлять в них пользователей для рассылки приглашений в игру"
 		}
 	],
-	"menu": [
-		{
-			"name": "Форум",
-			"href": "http://klavogonki.ru/forum/"
-		},
-		{
-			"name": "Вики",
-			"href": "http://klavogonki.ru/wiki/"
-		},
-		{
-			"name": "Об игре",
-			"href": "http://klavogonki.ru/about/"
-		},
-		{
-			"name": "Словари",
-			"href": "http://klavogonki.ru/vocs/"
-		},
-		{
-			"name": "Рекорды",
-			"href": "http://klavogonki.ru/top/"
-		},
-		{
-			"name": "Игра",
-			"href": "http://klavogonki.ru/gamelist/"
-		},
-		{
-			"name": "Помощь",
-			"href": "./KG/help.html"
-		}
-	],
 	"notifications": {
 		"xRace": [
 			{
