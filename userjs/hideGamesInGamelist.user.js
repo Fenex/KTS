@@ -21,7 +21,7 @@ if(!document.getElementById('KTS_HAGIGL')) {
 		var e = document.getElementById('KTS_HAGIGL_STYLE');
 		if(e) {
 			if(e.innerHTML == '#gamelist-active{display:none;}') {
-				localStorage['KTS_HAGIGL'] = e.innerHTML = '.ng-scope{display:none;}';
+				localStorage['KTS_HAGIGL'] = e.innerHTML = '#gamelist{display:none;}';
 			} else {
 				document.body.removeChild(document.getElementById('KTS_HAGIGL_STYLE'));
 				localStorage['KTS_HAGIGL'] = 'NULL';
