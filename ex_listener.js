@@ -6,7 +6,7 @@
 	return (str.substring(p1+2+tag.length, p2));
 }
 	
-function checkLiveTimer() {
+/*function checkLiveTimer() {
 	if(KlavoTools.notifications.live) {
 		if(!KTS_live_timer) {
 			live_pubDate.date = new Date('1970');
@@ -43,7 +43,7 @@ function closeNotifMsg() {
 		notifiers.msg_notifier.cancel();
 		notifiers.msg_notifier = false;
 	}
-}
+}*/
 
 function uploadCSV(params) {
 	ktslog('uploadCSV');
@@ -81,7 +81,7 @@ function(request, sender, sendResponse) {
 	}
     switch(request.reason) {
     case "info_mail":
-        clearTimeout(KTS_mail_listener);
+        /*clearTimeout(KTS_mail_listener);
         KTS_mail_listener = false;
         if(!request.obj.id) {
             islogined = false;
@@ -109,7 +109,7 @@ function(request, sender, sendResponse) {
             if(request.obj.newmail)
                 checkMail(userid);
         }
-        KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);
+        KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);*/
         sendResponse({answer: 'ok'});
     break;
     case "getChatSettings":
@@ -123,17 +123,17 @@ function(request, sender, sendResponse) {
     break;
     case "setSettings":
         KlavoTools = JSON.parse(localStorage['settings']);
-		checkLiveTimer();
-		checkCompetitions();
+		//checkLiveTimer();
+		//checkCompetitions();
 		sendResponse({answer: 'ok'});
     break;
 	case "closeNotifComp":
-		notifiers.comp_notifier.cancel();
-		notifiers.comp_notifier = false;
+		//notifiers.comp_notifier.cancel();
+		//notifiers.comp_notifier = false;
 		sendResponse({answer: 'ok'});
 	break;
 	case "closeNotifMsg":
-		closeNotifMsg();
+		//closeNotifMsg();
 		sendResponse({answer: 'ok'});
 	break;
 	case "alert":

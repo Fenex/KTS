@@ -1,8 +1,8 @@
-﻿var Mail = {};
+﻿/*var Mail = {};
 Mail.count = 0;
 var islogined = false;
 var KTS_mail_listener = false;
-
+*/
 /*function showMail(c, msg) {
 	
 	//chrome.browserAction.setPopup({popup: 'popup.html'});
@@ -110,4 +110,4 @@ function checkUserId() {
 	KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);
 }
 
-checkUserId();
+//checkUserId();
