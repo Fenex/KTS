@@ -94,28 +94,16 @@ else {
 	KlavoTools = JSON.parse(localStorage['settings'])
 }
 
-if(KlavoTools.ver < 14502) {
+/*if(KlavoTools.ver < 14502) {
 	KlavoTools.userjs.KlavoEvents = true;
-}
+}*/
 
 if(KTS_ver!=KlavoTools.ver) {
     KlavoTools.ver = KTS_ver;
     rememberSettings();
 }
 
-if(typeof(KlavoTools.userjs.klavostats_links)=='undefined') {
-    KlavoTools.userjs.klavostats_links = true;
-    rememberSettings();
-}
-if(typeof(KlavoTools.userjs.best5_results_in_profile)=='undefined') {
-    KlavoTools.userjs.best5_results_in_profile = true;
-    rememberSettings();
-}
-if(typeof(KlavoTools.userjs.save_race_in_blog)=='undefined') {
-    KlavoTools.userjs.save_race_in_blog = true;
-    rememberSettings();
-}
-if(typeof(KlavoTools.userjs.usergroups)=='undefined') {
+/*if(typeof(KlavoTools.userjs.usergroups)=='undefined') {
     KlavoTools.userjs.usergroups = true;
     rememberSettings();
-}
+}*/
