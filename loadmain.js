@@ -69,7 +69,6 @@ if(!localStorage['settings']) {
 			RecentGames: true,
 			DailyScores: true,
 			klavostats_links: true,
-			best5_results_in_profile: true,
 			save_race_in_blog: true,
 			usergroups: true
 		},

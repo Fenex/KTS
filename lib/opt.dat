@@ -147,13 +147,6 @@
 			"description": "Добавляет в профилях прямые ссылки на игрока в КлавоСтатистикe"
 		},
 		{
-			"id": "best5_results_in_profile",
-			"name": "ShowBest5Results",
-			"enabled": true,
-			"visible": true,
-			"description": "Отображает 5 лучших результатов игрока в профиле"
-		},
-		{
 			"id": "save_race_in_blog",
 			"name": "SaveRaceButton_inBlog",
 			"enabled": true,
