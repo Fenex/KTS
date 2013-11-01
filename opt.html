@@ -1,4 +1,4 @@
-﻿<html data-ng-app data-ng-csp>
+﻿<html ng:app="klavotools" ng:csp>
 <head>
 <link rel="stylesheet" href="/lib/opt.css" type="text/css">
 <script type="text/javascript" src="/lib/angular.min.js"></script>
@@ -16,9 +16,11 @@
 
 	<div id="logo">
 		<img src="./img/icon/klavotools_logo.png" alt="KlavoTools Logo" title="KlavoTools">
-		<span style="position:relative;right:150px;bottom:10px;font-size:10px;">Версия: <span id="echo_version">загрузка...</span></span>
+		<span style="position:relative;right:150px;bottom:10px;font-size:10px;">Версия: <span ng:controller="KTSVersion">{{version}}</span></span>
 	</div>
 
+	<ui:bug></ui:bug>
+	
 	<div class="right">
 
 		<div class="login-block">&nbsp;</div>
@@ -42,18 +44,10 @@
 	</div>
 
 	<div id="line"></div>
-	
 	<!--<div class="bar"></div>-->
-
 	<div style="clear: both;"></div>
 
-	<div id="risovalka" ng-controller="zzzaebizController">
-		<div class="title">Наши потоки подсознания:</div>
-		<div ng-repeat="img in imgs">
-		<a href="http://risovalka.zzzae.biz/gallery/{{img.id}}" /><img ng-src="{{img.url}}" /></a>
-		<div class="author" title="{{img.author}}">{{img.author}}</div>
-		</div>
-	</div>
+	<ui:risovalka></ui:risovalka>
 	
 	<div id="content" class="minwidth" ng-controller="LoadController">
 		<h4>Настройки KlavoTools</h4>
