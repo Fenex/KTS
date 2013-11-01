@@ -81,7 +81,7 @@ function(request, sender, sendResponse) {
 	}
     switch(request.reason) {
     case "info_mail":
-        /*clearTimeout(KTS_mail_listener);
+        clearTimeout(KTS_mail_listener);
         KTS_mail_listener = false;
         if(!request.obj.id) {
             islogined = false;
@@ -89,7 +89,7 @@ function(request, sender, sendResponse) {
 			setExIcon('null');
 			Mail.popup = '';
 			Mail.count = 0;
-			closeNotifMsg();
+			//closeNotifMsg();
         } else if(!request.obj.newmail) {
 			islogined = true;
 			if(userid!=request.obj.id) {
@@ -98,7 +98,7 @@ function(request, sender, sendResponse) {
 			}
             setExIcon('0');
 			Mail.count = 0;
-			closeNotifMsg();
+			//closeNotifMsg();
 			Mail.popup = '';
         } else {
             islogined = true;
@@ -109,7 +109,7 @@ function(request, sender, sendResponse) {
             if(request.obj.newmail)
                 checkMail(userid);
         }
-        KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);*/
+        KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);
         sendResponse({answer: 'ok'});
     break;
     case "getChatSettings":
