@@ -69,7 +69,7 @@
 						<option ng-repeat="x in settings.notifications.xRaceTimer" selected="{{x.checked}}" value="{{x.value}}">{{x.text}}</option>
 					</select>
 				</td>
-				<td style="border-left: solid 1px gray;">
+				<td style="display:none;border-left: solid 1px gray;">
 					<div ng-repeat="x in settings.notifications.special">
 						<input type="checkbox" id="{{x.value}}" name="{{x.value}}" checked="{{x.checked}}" class="user_set" /><label for="{{x.value}}">{{x.text}}</label>
 					</div>

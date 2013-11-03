@@ -76,8 +76,7 @@ function Notification() {
 						type: "basic",
 						title: params.title,
 						message: params.message,
-						iconUrl: params.iconUrl,
-						eventTime: params.timeout_show
+						iconUrl: params.iconUrl
 					},
 					function(notifId) {ktslog('created notif with id: '+notifId )}
 			);
