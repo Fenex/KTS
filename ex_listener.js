@@ -6,7 +6,7 @@
 	return (str.substring(p1+2+tag.length, p2));
 }
 	
-function checkLiveTimer() {
+/*function checkLiveTimer() {
 	if(KlavoTools.notifications.live) {
 		if(!KTS_live_timer) {
 			live_pubDate.date = new Date('1970');
@@ -22,28 +22,22 @@ function checkLiveTimer() {
 		live_pubDate.status = false;
 		live_pubDate.msg = new Array();
 	}
-}
+}*/
 function checkCompetitions() {
-	if(notifiers.comp_notifier) {
-		notifiers.comp_notifier.cancel();
-		notifiers.comp_notifier = false;
-	}
 	clearTimeout(competition_timer);
-	clearTimeout(competition_timer_show);
-	competition_timer_show = false;
 	if(KlavoTools.notifications.timeout) {
 		competition_timer = setTimeout(check_competition, 1);
 	} else {
 		competition_timer = false;
 	}
 }
-
+/*
 function closeNotifMsg() {
 	if(notifiers.msg_notifier) {
 		notifiers.msg_notifier.cancel();
 		notifiers.msg_notifier = false;
 	}
-}
+}*/
 
 function uploadCSV(params) {
 	ktslog('uploadCSV');
@@ -89,7 +83,7 @@ function(request, sender, sendResponse) {
 			setExIcon('null');
 			Mail.popup = '';
 			Mail.count = 0;
-			closeNotifMsg();
+			//closeNotifMsg();
         } else if(!request.obj.newmail) {
 			islogined = true;
 			if(userid!=request.obj.id) {
@@ -98,7 +92,7 @@ function(request, sender, sendResponse) {
 			}
             setExIcon('0');
 			Mail.count = 0;
-			closeNotifMsg();
+			//closeNotifMsg();
 			Mail.popup = '';
         } else {
             islogined = true;
@@ -123,17 +117,18 @@ function(request, sender, sendResponse) {
     break;
     case "setSettings":
         KlavoTools = JSON.parse(localStorage['settings']);
-		checkLiveTimer();
 		checkCompetitions();
+		//checkLiveTimer();
 		sendResponse({answer: 'ok'});
     break;
 	case "closeNotifComp":
-		notifiers.comp_notifier.cancel();
-		notifiers.comp_notifier = false;
+		notif.clickedNotif('competition');
+		//notifiers.comp_notifier.cancel();
+		//notifiers.comp_notifier = false;
 		sendResponse({answer: 'ok'});
 	break;
 	case "closeNotifMsg":
-		closeNotifMsg();
+		//closeNotifMsg();
 		sendResponse({answer: 'ok'});
 	break;
 	case "alert":
