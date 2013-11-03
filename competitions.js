@@ -1,10 +1,9 @@
 ﻿var var_notifier = {
 	rate: 0,
 	gmid: 0
-	};
+};
 	
-var competition_timer = false;
-var competition_timer_show = false;	
+var competition_timer = false;	
 
 function check_competition() {
 	new Ajax.Request('http://klavogonki.ru/gamelist.data?KTS_REQUEST', {
@@ -13,7 +12,6 @@ function check_competition() {
 		onSuccess: function(transport)
 		{
 			var obj = JSON.parse(transport.responseText);
-			//alert(obj.gamelist[0].params.competition);
 			if(!obj.gamelist[0].params.competition)
 				return false;
 				
@@ -61,21 +59,15 @@ function check_competition() {
 				var_notifier.rate = rate.toString();
 				var_notifier.gmid = gmid.toString();
 
-				competition_timer_show = setTimeout( function() {
-							alertKTS('img/icon/comp_btn.png', 'Соревнование', 'Соревнование x'+var_notifier.rate+' начинается.', 'http://klavogonki.ru/g/?gmid='+var_notifier.gmid, '1');
-						},
-						timer * 1000 );
-				
-				setTimeout( function() {
-							if(notifiers.comp_notifier) {
-								notifiers.comp_notifier.cancel();
-								notifiers.comp_notifier = false;
-							}
-						},
-						(begintime - server_time) * 1000 );
-			
-			
-			
+				notif.alert({
+					kts: 'competition',
+					timeout_hide: (begintime - server_time) * 1000,
+					iconUrl: chrome.extension.getURL('img/icon/comp_btn.png'),
+					message: 'Соревнование x'+var_notifier.rate+' начинается.',
+					title: 'Соревнование',
+					gmid: var_notifier.gmid,
+					timeout_show: timer * 1000
+				});
 			}
 			
 			return true;

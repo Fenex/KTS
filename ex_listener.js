@@ -22,22 +22,16 @@
 		live_pubDate.status = false;
 		live_pubDate.msg = new Array();
 	}
-}
+}*/
 function checkCompetitions() {
-	if(notifiers.comp_notifier) {
-		notifiers.comp_notifier.cancel();
-		notifiers.comp_notifier = false;
-	}
 	clearTimeout(competition_timer);
-	clearTimeout(competition_timer_show);
-	competition_timer_show = false;
 	if(KlavoTools.notifications.timeout) {
 		competition_timer = setTimeout(check_competition, 1);
 	} else {
 		competition_timer = false;
 	}
 }
-
+/*
 function closeNotifMsg() {
 	if(notifiers.msg_notifier) {
 		notifiers.msg_notifier.cancel();
@@ -123,11 +117,12 @@ function(request, sender, sendResponse) {
     break;
     case "setSettings":
         KlavoTools = JSON.parse(localStorage['settings']);
+		checkCompetitions();
 		//checkLiveTimer();
-		//checkCompetitions();
 		sendResponse({answer: 'ok'});
     break;
 	case "closeNotifComp":
+		notif.clickedNotif('competition');
 		//notifiers.comp_notifier.cancel();
 		//notifiers.comp_notifier = false;
 		sendResponse({answer: 'ok'});
