@@ -18,14 +18,17 @@ function Notification() {
 	function checkEngine() {
 		if(!chrome)
 			return false;
+		
+		if(webkitNotifications)
+			return 'WebKit';
+		
 		if(chrome.notifications) {
 			chrome.notifications.onClicked.addListener(function(id) {
 				notif.clickedNotif(id);
 			});
 			return 'Blink';
 		}
-		if(webkitNotifications)
-			return 'WebKit';
+		
 		return false;
 	}
 	
@@ -127,7 +130,7 @@ function Notification() {
 					ktslog('notification hide with id: '+id)
 				});
 			} else if (this.engine == 'WebKit') {
-				chrome.competition.webkit.cancel();
+				notifiers.competition.webkit.cancel();
 			}
 			
 			chrome.tabs.create({
