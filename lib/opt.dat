@@ -159,7 +159,14 @@
 			"enabled": true,
 			"visible": true,
 			"description": "Позволяет создавать группы и добавлять в них пользователей для рассылки приглашений в игру"
-		}
+		},
+		{
+			"id": "IgnoreList",
+			"name": "IgnoreList",
+			"enabled": true,
+			"visible": true,
+			"description": "Чёрный список в чате"
+		}		
 	],
 	"notifications": {
 		"xRace": [

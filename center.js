@@ -19,6 +19,8 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/hideUserList.user.js'});
 		if(KlavoTools.userjs.hideAllGamesInGamelist)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/hideGamesInGamelist.user.js'});
+		if(KlavoTools.userjs.IgnoreList)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/ignorelist.user.js'});
 	}
 	else if(/klavogonki\.ru\/g\/?\?/.test(url)) {
 		if(KlavoTools.userjs.sortResults)

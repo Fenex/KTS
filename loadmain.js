@@ -10,7 +10,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 15001;
+var KTS_ver = 15002;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 90 * 1000; //1min 30sec
@@ -57,13 +57,11 @@ if(!localStorage['settings']) {
 			chat2BBCode: true,
 			IgnoreList: true,
 			CustomHide: true,
-			chatLeftLinks: true,
 			QuickVocsStart: true,
 			HideCars: true,
 			ECM: true,
 			ProfileTools: true,
             AntiBackspace: true,
-			kts_chat: false,
 			NEC: true,
 			timeout_alert: false,
 			RecentGames: true,
@@ -93,9 +91,9 @@ else {
 	KlavoTools = JSON.parse(localStorage['settings'])
 }
 
-/*if(KlavoTools.ver < 14502) {
-	KlavoTools.userjs.KlavoEvents = true;
-}*/
+if(KlavoTools.ver < 15002) {
+	KlavoTools.userjs.IgnoreList = true;
+}
 
 if(KTS_ver!=KlavoTools.ver) {
     KlavoTools.ver = KTS_ver;
