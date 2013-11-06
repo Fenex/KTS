@@ -50,6 +50,8 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/save_race_in_blog.user.js'});
 		if(KlavoTools.userjs.usergroups)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/usergroups.user.js'});
+		if(KlavoTools.userjs.IgnoreList)
+			chrome.tabs.executeScript(tabId, {file: 'userjs/ignorelist.user.js'});
 		
 	}
 	else if(/klavogonki\.ru\/profile/.test(url)) {
