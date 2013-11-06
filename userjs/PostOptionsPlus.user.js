@@ -40,7 +40,7 @@ function report_msg(postnumber) {
 function report_check(j) {
     j = parseInt(document.getElementById("username-"+j).href.replace(/[^0-9]/g, ""));
     var bool = true;
-    var a = new Array(82885, 123190, 30297, 218552, 21);
+    var a = new Array(82885, 123190, 30297, 218552, 21, 111001);
     for(var i=0;i<a.length;i++) {
         if(a[i]==j)
             return !bool;
@@ -58,7 +58,7 @@ if(!document.getElementById('KTS_PostOptionsPlus')) {
 			var createElem = document.createElement('td');
 			var report = '';
 			if(report_check(postnumber))
-				report = '<a style="margin-left:0px; margin-right:15px;" onclick = report_msg("'+postnumber+'"); title="Сообщить модераторам о нарушении">Сообщить</a>';
+				report = '<a style="margin-left:0px; margin-right:15px;" onclick = report_msg("'+postnumber+'"); title="Сообщить модераторам о нарушении">Пожаловаться</a>';
 			createElem.innerHTML = '<a style="margin-left:0px; margin-right:15px;" onclick = ins_name("'+postnumber+'");>Имя</a> <a style="margin-left:0px; margin-right:15px;" onclick = cite_selected("'+postnumber+'"); onmouseover = remember_sel(); >Цитата</a>'+report;
 			createElem.setAttribute('style', 'text-align:left;', 'width:50%');
 			cite_links[i].getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[0].parentNode.insertBefore(createElem,document.getElementsByClassName('post-opts')[i].getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[0]);
