@@ -3,7 +3,7 @@
 // @namespace      klavogonki
 // @include        http://klavogonki.ru/g*
 // @author         Fenex
-// @version        3.0.0
+// @version        3.1.0 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 
@@ -89,27 +89,30 @@ function try_inject_ignoreList() {
 	setTimeout(try_inject_ignoreList, 100);
 }
 
-(function() {
-	var m_c = document.getElementById('chat-content').getElementsByClassName('messages-content');
+if(!document.getElementById('KTS_IgnoreList')) {
+	(function() {
+		var m_c = document.getElementById('chat-content').getElementsByClassName('messages-content');
 
-	for(var i=0; i<m_c.length; i++) {
-		m_c[i].getElementsByTagName('div')[0].setAttribute('ng:ignore:list', '');
-		m_c[i].getElementsByTagName('div')[0].setAttribute('list', 'list');
-	}
+		for(var i=0; i<m_c.length; i++) {
+			m_c[i].getElementsByTagName('div')[0].setAttribute('ng:ignore:list', '');
+			m_c[i].getElementsByTagName('div')[0].setAttribute('list', 'list');
+		}
 
-	var mm = document.getElementById('chat-content').getElementsByClassName('messages');
-	for(var i=0; i<mm.length; i++) {
-		var th = mm[i].getElementsByTagName('th')[0];
-		var td = document.createElement('td');
-		td.innerHTML = '<img style="cursor:pointer;" src="http://klavogonki.ru/img/exclamation.gif" title="Чёрный список" ng:click="openWin()" />';
-			
-		th.parentNode.insertBefore(td, th.nextSimbling);
-	}
+		var mm = document.getElementById('chat-content').getElementsByClassName('messages');
+		for(var i=0; i<mm.length; i++) {
+			var th = mm[i].getElementsByTagName('th')[0];
+			var td = document.createElement('td');
+			td.innerHTML = '<img style="cursor:pointer;" src="http://klavogonki.ru/img/exclamation.gif" title="Чёрный список" ng:click="openWin()" />';
+				
+			th.parentNode.insertBefore(td, th.nextSimbling);
+		}
 
-	document.getElementById('chat-content').setAttribute('ng:controller', 'ignoreListCtrl');
+		document.getElementById('chat-content').setAttribute('ng:controller', 'ignoreListCtrl');
 
-	var s = document.createElement('script');
-	s.innerHTML = exe + try_inject_ignoreList + '\r\ntry_inject_ignoreList()';
-	document.body.appendChild(s);		
+		var s = document.createElement('script');
+		s.innerHTML = exe + try_inject_ignoreList + '\r\ntry_inject_ignoreList()';
+		s.id = 'KTS_IgnoreList';
+		document.body.appendChild(s);		
 
-})();
+	})();
+}
