@@ -23,7 +23,11 @@ function exe() {
 					var start = count;
 					count = c;
 					for(var i=start; i<c; i++) {
-						var user_id = parseInt(ps[i].getElementsByClassName('username')[0].getElementsByTagName('span')[0].getAttribute('data-user'));
+						var user_elem = ps[i].getElementsByClassName('username')[0];
+						if(!user_elem)
+							continue;
+						var user_id = parseInt(user_elem.getElementsByTagName('span')[0].getAttribute('data-user'
+						));
 						if(scope.list.indexOf(user_id) != -1)
 							ps[i].hide();
 					}
