@@ -3,7 +3,7 @@
 // @namespace      klavogonki
 // @include        http://klavogonki.ru/g*
 // @author         Fenex
-// @version        3.1.1 KTS
+// @version        3.1.2 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 
@@ -99,11 +99,11 @@ if(!document.getElementById('KTS_IgnoreList')) {
 
 		var mm = document.getElementById('chat-content').getElementsByClassName('messages');
 		for(var i=0; i<mm.length; i++) {
-			var th = mm[i].getElementsByTagName('th')[0];
+			var th = mm[i].getElementsByTagName('td')[1];
 			var td = document.createElement('td');
 			td.innerHTML = '<img style="cursor:pointer;" src="http://klavogonki.ru/img/exclamation.gif" title="Чёрный список" ng:click="openWin()" />';
 				
-			th.parentNode.insertBefore(td, th.nextSimbling);
+			th.parentNode.insertBefore(td, th);
 		}
 
 		document.getElementById('chat-content').setAttribute('ng:controller', 'ignoreListCtrl');
