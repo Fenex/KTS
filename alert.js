@@ -19,7 +19,7 @@ function Notification() {
 		if(!chrome)
 			return false;
 		
-		if(webkitNotifications)
+		if(webkitNotifications&&webkitNotifications.createHTMLNotification)
 			return 'WebKit';
 		
 		if(chrome.notifications) {
