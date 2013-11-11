@@ -5,7 +5,7 @@
 // @include        http://klavogonki.ru/g*
 // @include        http://klavogonki.ru/profile/*
 // @author         Fenex
-// @version        1.0.5 KTS
+// @version        1.0.6 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 

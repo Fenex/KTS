@@ -3,7 +3,7 @@
 // @namespace      klavogonki
 // @include        http://klavogonki.ru/g*
 // @author         Fenex
-// @version        3.1.2 KTS
+// @version        3.1.3 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 
@@ -82,7 +82,7 @@ function try_inject_ignoreList() {
 	try {
 		if(angular) {
 			if(angular.version.full=='1.2.0')
-				document.getElementById('userjs_IgnoreList').style.display = 'none';
+				document.getElementById('userjs_IgnoreList').setAttribute('onclick', 'popalert("Скрипт IgnoreList не совместим со скриптами на сайте. Отключите скрипт.")');
 			else
 				exe();
 			return;
