@@ -15,6 +15,14 @@ if(!document.getElementById('KTS_UserGroups')) {
 
 function exe() {
 
+	if(angular.version.full=='1.2.0') {
+		if(document.getElementById('userjsusergroups'))
+			document.getElementById('userjsusergroups').style.display = 'none';
+		if(document.getElementById('invite'))
+			document.getElementById('invite').getElementsByClassName('rc')[0].innerHTML = '<h4>Пригласить</h4>Скрипт <b>UserGroups</b> не совместим со скриптами на сайте. Отключите скрипт.';
+		return;
+	}
+
 	function getIndexByChildId(array, id, mode) {
 		for(var i=0; i<array.length; i++) {
 			if(array[i].id == id) {
@@ -240,7 +248,6 @@ if(document.querySelectorAll('.name a')[0].href.match(/[\d]+/)[0] == location.hr
 /*******************************START PROFILE SCRIPT*****************************/
 
 var dl = document.createElement('dl');
-dl.setAttribute('ng-app', 'userjsusergroups');
 dl.setAttribute('ng-controller', 'userjsUsergroupsController');
 dl.id = "userjsusergroups";
 dl.innerHTML = '<dt style="cursor:pointer;" title="Открыть редактор групп" ng-init="groupbox = false;" ng-click="groupbox = !groupbox;">Группы:</dt><dd>\
@@ -305,7 +312,6 @@ div2.innerHTML = '\
 </div>';
 
 var invite_block = document.getElementById('invite');
-invite_block.setAttribute('ng-app', 'userjsusergroups');
 invite_block.setAttribute('ng-controller', 'userjsUserInviteController');
 
 document.getElementById('friends-list').parentNode.insertBefore(div2, document.getElementById('friends-list').nextSimbling);

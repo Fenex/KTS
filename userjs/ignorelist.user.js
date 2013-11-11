@@ -81,7 +81,10 @@ function exe() {
 function try_inject_ignoreList() {
 	try {
 		if(angular) {
-			exe();
+			if(angular.version.full=='1.2.0')
+				document.getElementById('userjs_IgnoreList').style.display = 'none';
+			else
+				exe();
 			return;
 		}
 	} catch(e) {}
@@ -101,6 +104,7 @@ if(!document.getElementById('KTS_IgnoreList')) {
 		for(var i=0; i<mm.length; i++) {
 			var th = mm[i].getElementsByTagName('td')[1];
 			var td = document.createElement('td');
+			td.id = 'userjs_IgnoreList';
 			td.innerHTML = '<img style="cursor:pointer;" src="http://klavogonki.ru/img/exclamation.gif" title="Чёрный список" ng:click="openWin()" />';
 				
 			th.parentNode.insertBefore(td, th);
