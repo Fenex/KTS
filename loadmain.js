@@ -10,7 +10,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 15012;
+var KTS_ver = 15013;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 90 * 1000; //1min 30sec
@@ -51,7 +51,7 @@ if(!localStorage['settings']) {
 			KlavoEvents: true,
 			sortResults: true,
 			DelGameButton: true,
-			hideUserList: true,
+			hideUserList: false,
 			hideAllGamesInGamelist: true,
 			restoreChat: true,
 			chat2BBCode: true,
@@ -91,8 +91,9 @@ else {
 	KlavoTools = JSON.parse(localStorage['settings'])
 }
 
-if(KlavoTools.ver < 15002) {
+if(KlavoTools.ver < 15013) {
 	KlavoTools.userjs.IgnoreList = true;
+	KlavoTools.userjs.hideUserList = false;
 }
 
 if(KTS_ver!=KlavoTools.ver) {

@@ -15,8 +15,8 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/chat2BBcode.user.js'});
 		//if(KlavoTools.userjs.restoreChat)
 		//	chrome.tabs.executeScript(tabId, {file: 'userjs/fixedChat.user.js'});
-		if(KlavoTools.userjs.hideUserList)
-			chrome.tabs.executeScript(tabId, {file: 'userjs/hideUserList.user.js'});
+		//if(KlavoTools.userjs.hideUserList)
+		//	chrome.tabs.executeScript(tabId, {file: 'userjs/hideUserList.user.js'});
 		if(KlavoTools.userjs.hideAllGamesInGamelist)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/hideGamesInGamelist.user.js'});
 		if(KlavoTools.userjs.IgnoreList)
@@ -30,8 +30,8 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/chat2BBcode.user.js'});
 		//if(KlavoTools.userjs.restoreChat)
 		//	chrome.tabs.executeScript(tabId, {file: 'userjs/fixedChat.user.js'});
-		if(KlavoTools.userjs.hideUserList)
-			chrome.tabs.executeScript(tabId, {file: 'userjs/hideUserList.user.js'});
+		//if(KlavoTools.userjs.hideUserList)
+		//	chrome.tabs.executeScript(tabId, {file: 'userjs/hideUserList.user.js'});
 		if(KlavoTools.userjs.DelGameButton)
 			chrome.tabs.executeScript(tabId, {file: 'userjs/DelGameButton.user.js'});
 		if(KlavoTools.userjs.HideCars)

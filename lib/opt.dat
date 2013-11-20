@@ -51,8 +51,8 @@
 		{
 			"id": "hideUserList",
 			"name": "hideUserList",
-			"enabled": true,
-			"visible": true,
+			"enabled": false,
+			"visible": false,
 			"description": "Возможность скрытия списка пользователей чата"
 		},
 		{

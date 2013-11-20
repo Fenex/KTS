@@ -7,113 +7,83 @@
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 
-function exe() {
-	angular.module('ignorelist', [])
-	.directive('ngIgnoreList', function() {
-		return {
-			restrict: 'A',
-			scope: {
-				list: '='
-			},
-			link: function (scope, element, attrs) {
-				var count = 0;
-				
-				function check2hide(c) {
-					var ps = element.children('p');
-					var start = count;
-					count = c;
-					for(var i=start; i<c; i++) {
-						var user_elem = ps[i].getElementsByClassName('username')[0];
-						if(!user_elem)
-							continue;
-						var user_id = parseInt(user_elem.getElementsByTagName('span')[0].getAttribute('data-user'));
-						if(scope.list.indexOf(user_id) != -1)
-							ps[i].hide();
-					}
-				}
-				
-				function checkP() {
-					var c = element.children('p').length;
-					if(c!=count) {
-						check2hide(c);
-					}						
-				}
-				
-				/*scope.$watch(function(){
-					return element.children('p').length;
-				}, function(oldValue, newValue) {
-					console.log([oldValue, newValue]);
-				});*/
-				
-				setInterval(checkP, 10);
-				
-			}
+var ILC = {};
+
+ILC.init = function() {
+	var ch = document.getElementsByClassName('chat');
+	for(var i=0; i<ch.length; i++) {
+		this.chats[ch[i].id.split('-')[1]] = {
+			timer: false,
+			count: 0
 		};
-	})
-	.controller('ignoreListCtrl', function($scope){
-		$scope.list = [];
-		if(localStorage['ignoreList']) {
-			try {
-				$scope.list = JSON.parse(localStorage['ignoreList']);
-			} catch (e) {
-				$scope.list = [];
+	}
+	
+	var _this = this;
+	
+	setInterval(function() {
+		for(var key in _this.chats) {
+			var msgs = document.getElementById('chat-'+key).getElementsByTagName('p');
+			if(msgs.length==_this.chats[key].count)
+				continue;
+			
+			var start = _this.chats[key].count;
+			_this.chats[key].count = msgs.length;
+			
+			for(var i=start; i<_this.chats[key].count; i++) {
+				var user_elem = msgs[i].getElementsByClassName('username')[0];
+				if(!user_elem)
+					continue;
+				var user_id = parseInt(user_elem.getElementsByTagName('span')[0].getAttribute('data-user'));
+				if(_this.list.indexOf(user_id) != -1)
+					msgs[i].style.display = 'none';
 			}
 		}
-		
-		$scope.$watch('list', function(newValue, oldValue) {
-			localStorage['ignoreList'] = JSON.stringify(newValue);
-		})
-		
-		$scope.openWin = function() {
-			var a = prompt('Введите через запятую ID пользователей для добавления в чёрный список:', $scope.list);
-			if(typeof a == 'object')
-				return;
-				
-			a = a.split(',');
-			for(var i=0; i<a.length; i++)
-				a[i] = parseInt(a[i]);
-			$scope.list = a;
-		}
-	});
-	angular.bootstrap(document.getElementById('chat-content'), ['ignorelist']);
+	}, 10);
 }
 
-function try_inject_ignoreList() {
-	try {
-		if(angular) {
-			if(angular.version.full=='1.2.0')
-				document.getElementById('userjs_IgnoreList').setAttribute('onclick', 'popalert("Скрипт IgnoreList не совместим со скриптами на сайте. Отключите скрипт.")');
-			else
-				exe();
-			return;
-		}
-	} catch(e) {}
-	setTimeout(try_inject_ignoreList, 100);
+ILC.openWin = function() {
+	var a = prompt('Введите через запятую ID пользователей для добавления в чёрный список:', this.list);
+	if(typeof a == 'object')
+		return;
+		
+	a = a.split(',');
+	for(var i=0; i<a.length; i++)
+		a[i] = parseInt(a[i]);
+	
+	this.list = a;
+	localStorage['ignoreList'] = JSON.stringify(a);		
 }
+
+ILC.__constructor = function() {
+	this.list  = JSON.parse(localStorage['ignoreList']);
+	this.chats = {};
+}
+
+var INNERHTML = 'IgnoreListClass = '+ILC.__constructor;
+for(var key in ILC) {
+	if(key!='__constructor')
+		INNERHTML += ';\r\n IgnoreListClass.prototype.' + key + ' = ' + ILC[key];
+}
+INNERHTML += '\r\n var IgnoreList = new IgnoreListClass; \r\n IgnoreList.init();';
 
 if(!document.getElementById('KTS_IgnoreList')) {
 	(function() {
-		var m_c = document.getElementById('chat-content').getElementsByClassName('messages-content');
+		if(!document.getElementById('chat-content'))
+			return;
 
-		for(var i=0; i<m_c.length; i++) {
-			m_c[i].getElementsByTagName('div')[0].setAttribute('ng:ignore:list', '');
-			m_c[i].getElementsByTagName('div')[0].setAttribute('list', 'list');
-		}
+		var m_c = document.getElementById('chat-content').getElementsByClassName('messages-content');
 
 		var mm = document.getElementById('chat-content').getElementsByClassName('messages');
 		for(var i=0; i<mm.length; i++) {
 			var th = mm[i].getElementsByTagName('td')[1];
 			var td = document.createElement('td');
-			td.id = 'userjs_IgnoreList';
-			td.innerHTML = '<img style="cursor:pointer;" src="http://klavogonki.ru/img/exclamation.gif" title="Чёрный список" ng:click="openWin()" />';
+			td.innerHTML = '<img style="cursor:pointer;" src="http://klavogonki.ru/img/exclamation.gif" title="Чёрный список" onclick="IgnoreList.openWin();" />';
 				
 			th.parentNode.insertBefore(td, th);
 		}
 
-		document.getElementById('chat-content').setAttribute('ng:controller', 'ignoreListCtrl');
-
 		var s = document.createElement('script');
-		s.innerHTML = exe + try_inject_ignoreList + '\r\ntry_inject_ignoreList()';
+		s.innerHTML = INNERHTML;
 		s.id = 'KTS_IgnoreList';
 		document.body.appendChild(s);		
 
