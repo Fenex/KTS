@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Klavogonki: daily scores
 // @namespace     klavogonki
-// @version       2.0 KTS
+// @version       2.1 KTS
 // @description   displays the gained daily scores on the user panel
 // @include       http://klavogonki.ru/*
 // @author        Lexin
@@ -19,6 +19,7 @@ function main(){
     var daily_scores_last_levels_rating
     var daily_scores_start_level_rating = 0;
     var daily_scores_rating = 0;
+    var daily_scores_last_rating_gmid = 0;
     
     function shiftTime(date){
         date.setUTCHours(date.getUTCHours() - 1);
@@ -143,6 +144,13 @@ function main(){
         }
     }
 
+    if (localStorage['daily_scores_last_rating_gmid']) {
+        daily_scores_last_rating_gmid = parseInt(localStorage['daily_scores_last_rating_gmid'], 10);
+    }
+
+    if (!daily_scores) {
+        localStorage['daily_scores'] = daily_scores;
+    }    
     if (!daily_scores_deducted) {
         localStorage['daily_scores_deducted'] = daily_scores_deducted;
     }
@@ -162,6 +170,9 @@ function main(){
         daily_scores_start_level_rating = getCurrentLevelRating();
         localStorage['daily_scores_start_level_rating'] = daily_scores_start_level_rating;
     }
+    
+    var d = new Date();
+    localStorage['last_race_date'] = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds());
     
     updatePanel();
 
@@ -213,8 +224,6 @@ function main(){
                 nodeDailyScores.innerHTML += '<span id="race-scores" style="color:#B7FFB3; padding-left:5px; font-size:9px; font-weight:bold; position:relative; top:-1px;">(' + race_scores + ')</span>';
             }
             localStorage['daily_scores'] = daily_scores;
-            var d = new Date();
-            localStorage['last_race_date'] = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds());
         }
     };
     
@@ -236,10 +245,12 @@ function main(){
             if (!(game && game.params)) return;
             clearInterval(timer);
             
-            if (game.params.competition) {
+            if (game.params.competition && game.id !== daily_scores_last_rating_gmid) {
+                daily_scores_last_rating_gmid = game.id;
                 daily_scores_deducted += 150;
                 nodeDailyScoresDeductedValue.innerHTML = '-' + daily_scores_deducted;
             	localStorage['daily_scores_deducted'] = daily_scores_deducted;
+                localStorage['daily_scores_last_rating_gmid'] = daily_scores_last_rating_gmid;
             }
         };
         timer = setInterval(handler, 1000);
