@@ -19,10 +19,11 @@ function sort(sortKey)
 
 	function getPlace(a)
 	{
-		if (!a.firstChild.firstChild || !a.firstChild.firstChild.firstChild)
-			return 100500 - getProgress(a);
-		var text = a.firstChild.firstChild.firstChild.innerHTML;
-		return text.split(" ")[0];
+        	var rating = document.getElementById(a.id.replace("player", "rating"));
+        	if (!rating || !rating.childNodes[0])
+            		return 100500 - getProgress(a);
+        	var text = rating.childNodes[0].firstChild.innerHTML
+        	return parseInt(text,10);
 	}
 
 	function getErrors(a)

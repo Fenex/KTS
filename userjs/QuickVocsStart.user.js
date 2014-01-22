@@ -17,7 +17,7 @@ if(!document.getElementById('KTS_QuickVocsStart')) {
 			var tmp = document.getElementsByClassName('user-block')[0];
 			if(!tmp)
 				return 0;
-			return tmp.getElementsByClassName('profile')[0].href.match(/profile\/([\d]+)/)[1];
+			return tmp.getElementsByClassName('btn')[0].href.match(/u\/#\/([\d]+)/)[1];
 		}
 		
 		function generateLink(param) {
