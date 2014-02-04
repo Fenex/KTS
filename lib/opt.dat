@@ -49,13 +49,6 @@
 			"description": "Кнопка удаления результата в соревнованиях (работает только для Премиум-аккаунтов)"
 		},
 		{
-			"id": "hideUserList",
-			"name": "hideUserList",
-			"enabled": false,
-			"visible": false,
-			"description": "Возможность скрытия списка пользователей чата"
-		},
-		{
 			"id": "hideAllGamesInGamelist",
 			"name": "hideAllGamesInGamelist",
 			"enabled": true,
@@ -75,13 +68,6 @@
 			"enabled": true,
 			"visible": true,
 			"description": "Поддержка скрытого текста с заголовком"
-		},
-		{
-			"id": "ProfileTools",
-			"name": "ProfileTools",
-			"enabled": true,
-			"visible": true,
-			"description": "Позволяет выделять несколько сообщений в бортжурнале, комментариях, почте и удалять их"
 		},
 		{
 			"id": "QuickVocsStart",
@@ -152,13 +138,6 @@
 			"enabled": true,
 			"visible": true,
 			"description": "Добавляет кнопку для сохранения результата любого заезда в бортжурнале"
-		},
-		{
-			"id": "usergroups",
-			"name": "UserGroups",
-			"enabled": true,
-			"visible": true,
-			"description": "Позволяет создавать группы и добавлять в них пользователей для рассылки приглашений в игру"
 		},
 		{
 			"id": "IgnoreList",

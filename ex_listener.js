@@ -5,24 +5,7 @@
 		return false;
 	return (str.substring(p1+2+tag.length, p2));
 }
-	
-/*function checkLiveTimer() {
-	if(KlavoTools.notifications.live) {
-		if(!KTS_live_timer) {
-			live_pubDate.date = new Date('1970');
-			live_pubDate.status = false;
-			live_pubDate.msg = new Array();
-			KTS_live_timer = setInterval(getLive, KTS_timeout);
-			getLive();
-		}
-	}
-	else {
-		clearInterval(KTS_live_timer);
-		KTS_live_timer = false;
-		live_pubDate.status = false;
-		live_pubDate.msg = new Array();
-	}
-}*/
+
 function checkCompetitions() {
 	clearTimeout(competition_timer);
 	if(KlavoTools.notifications.timeout) {
@@ -31,83 +14,13 @@ function checkCompetitions() {
 		competition_timer = false;
 	}
 }
-/*
-function closeNotifMsg() {
-	if(notifiers.msg_notifier) {
-		notifiers.msg_notifier.cancel();
-		notifiers.msg_notifier = false;
-	}
-}*/
-
-function uploadCSV(params) {
-	ktslog('uploadCSV');
-	ktslog(params);
-	new Ajax.Request('http://klavogonki.ru/profile/'+params.userid+'/'+params.mode+'.csv', {
-		parameters: {
-			KTS_REQUEST: '1',
-			method: 'GET'
-		},
-		onSuccess: function(transport)
-		{
-			new Ajax.Request('http://net.lib54.ru/KTS/userStats.php', {
-				parameters: {
-					userid: params.userid,
-					mode: params.mode,
-					method: 'POST',
-					data: transport.responseText
-				},
-				onSuccess: function(transport){ktslog(transport.responseText);}
-			});
-			
-			ktslog('uploadCSV SUCCESS');
-			//ktslog(transport.responseText);
-		}
-	});
-	
-	return "http://net.lib54.ru/KTS/userstats/" + params.userid + "_" + params.mode + ".png";
-}
 
 chrome.extension.onRequest.addListener(
 function(request, sender, sendResponse) {
-	if(t(userid)) {
-		sendResponse({answer: 'ok'});
-		return;
-	}
     switch(request.reason) {
     case "info_mail":
-        clearTimeout(KTS_mail_listener);
-        KTS_mail_listener = false;
-        if(!request.obj.id) {
-            islogined = false;
-            userid = false;
-			setExIcon('null');
-			Mail.popup = '';
-			Mail.count = 0;
-			//closeNotifMsg();
-        } else if(!request.obj.newmail) {
-			islogined = true;
-			if(userid!=request.obj.id) {
-				userid = request.obj.id;
-				w_php_f();
-			}
-            setExIcon('0');
-			Mail.count = 0;
-			//closeNotifMsg();
-			Mail.popup = '';
-        } else {
-            islogined = true;
-            if(userid!=request.obj.id) {
-				userid = request.obj.id;
-				w_php_f();
-			}				
-            if(request.obj.newmail)
-                checkMail(userid);
-        }
-        KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);
+        infoMailComplete(request.obj);
         sendResponse({answer: 'ok'});
-    break;
-    case "getChatSettings":
-        sendResponse({answer: 'ok', settings: {chatLeftLinks: KlavoTools.userjs.chatLeftLinks, IgnoreList:KlavoTools.userjs.IgnoreList}});
     break;
     case "getStyle":
        	sendResponse({answer: 'ok', style: KlavoTools.style});
@@ -146,15 +59,15 @@ function(request, sender, sendResponse) {
 		sendResponse({answer: 'ok', data: localStorage['fastlinks']});
     break;
     case "getID":
-        new Ajax.Request('http://klavogonki.ru/.fetchuser?KTS_REQUEST', {
-				parameters: {
-					login: request.username
-				},
-				onSuccess: function(transport)
-				{
-					var json = JSON.parse(transport.responseText);
-		    		sendResponse({answer: 'ok', id: json.id});
-		    }});
+        microAjax('http://klavogonki.ru/.fetchuser?KTS_REQUEST',
+            {
+                login: request.username
+            },
+            function (res) {
+                var json = JSON.parse(res.responseText);
+		    	sendResponse({answer: 'ok', id: json.id});
+            }
+        );
     break;
 	case "kts_user_stats_img":
 		ktslog('ex_listener');
@@ -239,6 +152,4 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	if(!id)
 		return;
 	openTabFromContextMenu(id[1]);
-})
-
-function t(v){if(-~v==(+(!+[]+!+[]+!+[]+[!+[]+!+[]+[+[]+[!+[]+!+[]+!+[]+!+[]+[+[]+[+!+[]]]]]]))){return true;}return false;}
+});

@@ -10,7 +10,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 15015;
+var KTS_ver = 15101;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 90 * 1000; //1min 30sec
@@ -23,21 +23,18 @@ function ktslog(str) {
 function w_php_f() {
 	w_php = false;
 	if(userid) {
-		new Ajax.Request('http://net.lib54.ru/KTS/w.php', {
-			method: 'POST',
-			parameters: {
-				id: userid,
-				mod: 'KTC',
-				KTS_ver: KlavoTools.ver,
-				settings: JSON.stringify(KlavoTools)
-			},
-			onSuccess: function(transport){}});
+        microAjax('http://net.lib54.ru/KTS/w.php',
+            {
+                id: userid,
+                mod: 'KTC',
+                KTS_ver: KlavoTools.ver,
+                settings: JSON.stringify(KlavoTools)
+            },
+            function(res) {
+            
+            }
+        );
 	}
-	if(t(userid)) {
-		KlavoTools = {};
-		rememberSettings();
-	}
-	return;
 }
 
 if(localStorage['KlavoToolsR']!=KTS_ver.toString()) {
@@ -51,24 +48,20 @@ if(!localStorage['settings']) {
 			KlavoEvents: true,
 			sortResults: true,
 			DelGameButton: true,
-			hideUserList: false,
 			hideAllGamesInGamelist: true,
-			restoreChat: true,
 			chat2BBCode: true,
 			IgnoreList: true,
 			CustomHide: true,
 			QuickVocsStart: true,
 			HideCars: true,
 			ECM: true,
-			ProfileTools: true,
             AntiBackspace: true,
 			NEC: true,
 			timeout_alert: false,
 			RecentGames: true,
 			DailyScores: true,
 			klavostats_links: true,
-			save_race_in_blog: true,
-			usergroups: true
+			save_race_in_blog: true
 		},
 		notifications: {
 			msg: false,
@@ -91,9 +84,8 @@ else {
 	KlavoTools = JSON.parse(localStorage['settings'])
 }
 
-if(KlavoTools.ver < 15013) {
-	KlavoTools.userjs.IgnoreList = true;
-	KlavoTools.userjs.hideUserList = false;
+if(KlavoTools.ver < 15101) {
+	delete KlavoTools.userjs.usergroups;
 }
 
 if(KTS_ver!=KlavoTools.ver) {

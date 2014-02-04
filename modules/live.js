@@ -62,16 +62,12 @@ function publishLive() {
 }
 
 function getLive() {
-	new Ajax.Request('http://klavogonki.ru/live.xml?KTS_REQUEST', {
-		method: 'POST',
-		parameters: { },
-		onSuccess: function(transport)
-		{	
-			if(!live_pubDate.status)
-				getLive_1(transport.responseXML);
-			else
-				getLive_2(transport.responseXML);
-		}});
+	microAjax('http://klavogonki.ru/live.xml?KTS_REQUEST', {}, function(res) {
+        if(!live_pubDate.status)
+            getLive_1(transport.responseXML);
+        else
+            getLive_2(transport.responseXML);
+    });
 }
 
 //DEBUG
