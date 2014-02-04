@@ -1,7 +1,7 @@
 ﻿body, #tbl{margin:0px;font-family:tahoma;font-size:10pt;}
 #mail dl.message {margin-bottom: 30px;}
 #mail dt {float: left;text-align: right;font-weight: normal;color: #777;font-size: 10pt;vertical-align: baseline;margin-bottom: 1em;}
-#mail img {border: 0;max-width: 100%;}
+#mail img {border: 0;max-width: 98%;}
 #mail dd {margin: 0 0 1px 67px;vertical-align: baseline;}
 #mail .title {color: #777;margin-bottom: 5px;padding-top: 7px;height: 16px;}
 #mail a {color: #144E9D;}

@@ -52,14 +52,14 @@ function(request, sender, sendResponse) {
         sendResponse({answer: 'ok', popup: ''/*Mail.popup*/, FastLinks: localStorage['fastlinks']});
     break;
     case "getUserID":
-        sendResponse({answer: 'ok', id: userid});
+        sendResponse({answer: 'ok', id: KTS.user_id});
     break;
     case "saveFastLinks":
         localStorage['fastlinks'] = request.data;
 		sendResponse({answer: 'ok', data: localStorage['fastlinks']});
     break;
     case "getID":
-        microAjax('http://klavogonki.ru/.fetchuser?KTS_REQUEST',
+        microAjax('http://klavogonki.ru/.fetchuser',
             {
                 login: request.username
             },

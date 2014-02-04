@@ -2,19 +2,19 @@
 <head><title></title></head>
 <script src="/lib/popup.js" type="text/javascript"></script>
 <link href="/lib/popup.css" type="text/css" rel="stylesheet">
-<body>
-<table id="tbl" cellspacing="0" cellpadding="0" style="width:500px;height:220px;"><tr><td>
+<body style="height:100px;">
+<table id="tbl" cellspacing="0" cellpadding="0" style="width:510px;height:220px;"><tr><td>
 <div id='cssmenu'>
 <ul>
-   <li class='has-sub'><a path="/profile/__USERID__/">Профиль</a>
+   <li class='has-sub'><a path="/u/">Профиль</a>
       <ul>
-         <li><a path="/profile/__USERID__/">Информация</a></li>
-		 <li><a path="/profile/__USERID__/stats/">Статистика</a></li>
-		 <li><a path="/profile/__USERID__/car/">Гараж</a></li>
-		 <li><a path="/profile/__USERID__/blog/">Бортжурнал</a></li>
-		 <li><a path="/profile/__USERID__/comments/">Комментарии</a></li>
-		 <li><a path="/profile/__USERID__/friendfeed/">Лента друзей</a></li>
-		 <li><a path="/profile/__USERID__/mail/in/">Почта</a></li>
+         <li><a path="/u/">Сводка</a></li>
+		 <li><a path="/u/#/__USERID__/stats/">Статистика</a></li>
+		 <li><a path="/u/#/__USERID__/car/">Гараж</a></li>
+		 <li><a path="/u/#/__USERID__/journal/">Бортжурнал</a></li>
+		 <li><a path="/u/#/__USERID__/friends/feed/">Лента друзей</a></li>
+		 <li><a path="/u/#/__USERID__/messages/contacts/">Почта</a></li>
+         <li><a path="/u/#/__USERID__/prefs/">Настройки</a></li>
       </ul>
    </li>
    <li class='has-sub'><a path="/gamelist/">Игра</a>
@@ -29,7 +29,7 @@
       <ul>
          <li><a path="/top/">Рейтинг</a></li>
 		 <li><a path="/top/day/normal/">Рекорды за день</a></li>
-		 <li><a path="/top/day/week/">Рекорды за неделю</a></li>
+		 <li><a path="/top/week/normal/">Рекорды за неделю</a></li>
 		 <li><a path="/top/success/">Успехи</a></li>
       </ul>
    </li>
