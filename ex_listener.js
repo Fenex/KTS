@@ -49,7 +49,7 @@ function(request, sender, sendResponse) {
 		sendResponse({answer: 'ok'});
     break;
     case "getPopup":
-        sendResponse({answer: 'ok', popup: Mail.popup, FastLinks: localStorage['fastlinks']});
+        sendResponse({answer: 'ok', popup: ''/*Mail.popup*/, FastLinks: localStorage['fastlinks']});
     break;
     case "getUserID":
         sendResponse({answer: 'ok', id: userid});
@@ -64,7 +64,7 @@ function(request, sender, sendResponse) {
                 login: request.username
             },
             function (res) {
-                var json = JSON.parse(res.responseText);
+                var json = JSON.parse(res);
 		    	sendResponse({answer: 'ok', id: json.id});
             }
         );
