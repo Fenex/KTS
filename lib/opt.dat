@@ -126,13 +126,6 @@
 			"description": "Звуковое оповещение о старте игры"
 		},
 		{
-			"id": "klavostats_links",
-			"name": "klavostats_links",
-			"enabled": true,
-			"visible": true,
-			"description": "Добавляет в профилях прямые ссылки на игрока в КлавоСтатистикe"
-		},
-		{
 			"id": "save_race_in_blog",
 			"name": "SaveRaceButton_inBlog",
 			"enabled": true,

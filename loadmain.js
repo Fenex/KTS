@@ -60,7 +60,6 @@ if(!localStorage['settings']) {
 			timeout_alert: false,
 			RecentGames: true,
 			DailyScores: true,
-			klavostats_links: true,
 			save_race_in_blog: true
 		},
 		notifications: {

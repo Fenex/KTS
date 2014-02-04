@@ -42,13 +42,8 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/ignorelist.user.js'});
 		
 	}
-	else if(/klavogonki\.ru\/profile/.test(url)) {
-		chrome.tabs.executeScript(tabId, {file: 'userjs/count_FriendsVocs.user.js'});
-		chrome.tabs.executeScript(tabId, {file: 'userjs/BB-Tools.user.js'});
-		chrome.tabs.executeScript(tabId, {file: 'userjs/CalcMaxResult_Qual.user.js'});
-		if(KlavoTools.userjs.klavostats_links)
-			chrome.tabs.executeScript(tabId, {file: 'userjs/klavostats_links.user.js'});
-	}
+    else if(/klavogonki\.ru\/u\//.test(url)) {
+    }
 	else if(/klavogonki\.ru\/forum\/.+/.test(url)) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/ModerTools.user.js'});
 		chrome.tabs.executeScript(tabId, {file: 'userjs/BigTextArea.user.js'});
