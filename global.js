@@ -15,7 +15,7 @@ var CONST = {
     mail: {
         getId: null,
         getMsg: null,
-        interval: 10000
+        interval: 20000
     },
     live: null,
     competitions: null

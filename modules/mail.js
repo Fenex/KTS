@@ -1,6 +1,6 @@
 /**
 * 
-* Mail module checks for new mail and changes color of the KTS icon on the toolbar depending on auth user and unread mail
+* mail module checks for new mail and changes color of the KTS icon on the toolbar depending on auth user and unread mail
 *
 */
 
@@ -25,7 +25,7 @@
             getId();
         else
             getUnreadMsg();
-    }, CONST.mail.interval/2);
+    }, CONST.mail.interval);
 
     function getUnreadMsg() {
         microAjax('http://klavogonki.ru/api/profile/get-summary', {id: KTS.user_id}, function(res) {
