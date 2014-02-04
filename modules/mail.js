@@ -33,10 +33,11 @@
             if(!res.emails) {
                 KTS.user_id = null;
                 KTS.unread_msg = 0;
-                return;
+            } else {
+                KTS.unread_msg = res.unread_messages;
             }
-            
-            KTS.unread_msg = res.unread_messages;
+            setExIcon();
+
         });
     }
     
@@ -58,10 +59,13 @@
                         text: "Это системное сообщение KlavoTools."
                     },
                     function(res) {
+                        getId();
                     }
                 );
             }
+            getUnreadMsg();
         });
     }
 
+    getId();
 })();
