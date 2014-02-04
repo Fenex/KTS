@@ -3,7 +3,7 @@
 // @namespace      klavogonki
 // @include        http://klavogonki.ru/g*
 // @author         Fenex
-// @version        3.1.3 KTS
+// @version        3.1.4 KTS
 // @icon           http://www.gravatar.com/avatar.php?gravatar_id=d9c74d6be48e0163e9e45b54da0b561c&r=PG&s=48&default=identicon
 // ==/UserScript==
 
@@ -55,11 +55,11 @@ ILC.openWin = function() {
 }
 
 ILC.__constructor = function() {
-	this.list  = JSON.parse(localStorage['ignoreList']);
+	this.list = localStorage['ignoreList'] ? JSON.parse(localStorage['ignoreList']) : '';
 	this.chats = {};
 }
 
-var INNERHTML = 'IgnoreListClass = '+ILC.__constructor;
+var INNERHTML = 'var IgnoreListClass = '+ILC.__constructor;
 for(var key in ILC) {
 	if(key!='__constructor')
 		INNERHTML += ';\r\n IgnoreListClass.prototype.' + key + ' = ' + ILC[key];
