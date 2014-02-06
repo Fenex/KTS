@@ -7,7 +7,7 @@ var competition_timer = false;
 
 function check_competition() {
 	microAjax('http://klavogonki.ru/gamelist.data?KTS_REQUEST', {cached_users: '0'}, function(res) {
-        var obj = JSON.parse(res.responseText);
+        var obj = JSON.parse(res);
         if(!obj.gamelist[0].params.competition)
             return false;
             
