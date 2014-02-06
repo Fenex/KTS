@@ -42,8 +42,9 @@ function insertScriptsOnTab(tabId, url) {
 			chrome.tabs.executeScript(tabId, {file: 'userjs/ignorelist.user.js'});
 		
 	}
-    else if(/klavogonki\.ru\/u\//.test(url)) {
-    }
+    	else if(/klavogonki\.ru\/u\//.test(url)) {
+    		chrome.tabs.executeScript(tabId, {file: 'userjs/klavostats_links.user.js'});
+    	}
 	else if(/klavogonki\.ru\/forum\/.+/.test(url)) {
 		chrome.tabs.executeScript(tabId, {file: 'userjs/ModerTools.user.js'});
 		chrome.tabs.executeScript(tabId, {file: 'userjs/BigTextArea.user.js'});
