@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name          Klavogonki: klavostats links
 // @namespace     klavogonki
-// @version       2.0 KTS
+// @version       2.1 KTS
 // @description   Добавляет прямые ссылки на профиль игрока в КлавоСтатистике
 // @include       http://klavogonki.ru/u/*
 // @author        Lexin
@@ -11,11 +11,11 @@
 
 function main(){
 	function fn() {
-		var menu = jQuery('.sidebar.ng-scope');
+		var menu = jQuery('.sidebar');
 		if (menu.length) {
-			var player = jQuery('.profile-header .name.ng-binding').clone().children().remove().end().text();
+			var player = jQuery('.profile-header .name').clone().children().remove().end().text();
 			player = jQuery.trim(player);
-			var group = jQuery('<ul class="profile-nav ng-scope"></ul>');
+			var group = jQuery('<ul class="profile-nav"></ul>');
 			group.append(jQuery('<li><a href="http://stat.klavogonki.ru/players.php?extra&n=' + player + '">КлавоСтатистика</a></li>'));
 			group.append(jQuery('<li><a href="http://stat.klavogonki.ru/history.php#' + player + '">История игрока</a></li>'));
 			menu.append(group);
