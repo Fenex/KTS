@@ -133,11 +133,13 @@ function Notification() {
 				notifiers.competition.webkit.cancel();
 			}
 			
-			chrome.tabs.create({
-				"pinned": false,
-				"selected": true,
-				"url": "http://klavogonki.ru/g/?gmid="+notifiers.competition.gmid
-			}, function(tab){});
+            if(this.engine == 'Blink') {
+                chrome.tabs.create({
+                    "pinned": false,
+                    "selected": true,
+                    "url": "http://klavogonki.ru/g/?gmid="+notifiers.competition.gmid
+                }, function(tab){});
+            }
 
 			clearTimeout(notifiers.competition.timer);
 			notifiers.competition.timer = null;
