@@ -82,16 +82,22 @@ function(request, sender, sendResponse) {
 				return;
 
 			if(request.params.type=='profile') {
-				chrome.contextMenus.create({"title": "Информация", "contexts":["link"],
-											"onclick": function(){openTabFromContextMenu("/profile/"+request.params.id)}});
+                if(KTS && KTS.user_id) {
+                    chrome.contextMenus.create({"title": "Открыть диалог", "contexts":["link"],
+											"onclick": function(){openTabFromContextMenu("/u/#/"+KTS.user_id+"/messages/"+request.params.id+"/")}});
+                }
+				chrome.contextMenus.create({"title": "Сводка", "contexts":["link"],
+											"onclick": function(){openTabFromContextMenu("/u/#/"+request.params.id+"/")}});
 				chrome.contextMenus.create({"title": "Статиситка", "contexts":["link"],
-											"onclick": function(){openTabFromContextMenu("/profile/"+request.params.id+"/stats")}});
-				chrome.contextMenus.create({"title": "Гараж", "contexts":["link"],
-											"onclick": function(){openTabFromContextMenu("/profile/"+request.params.id+"/car")}});
+											"onclick": function(){openTabFromContextMenu("/u/#/"+request.params.id+"/stats/")}});
 				chrome.contextMenus.create({"title": "Бортжурнал", "contexts":["link"],
-											"onclick": function(){openTabFromContextMenu("/profile/"+request.params.id+"/blog")}});
-				chrome.contextMenus.create({"title": "Комментарии", "contexts":["link"],
-											"onclick": function(){openTabFromContextMenu("/profile/"+request.params.id+"/comments")}});
+											"onclick": function(){openTabFromContextMenu("/u/#/"+request.params.id+"/journal/")}});
+				chrome.contextMenus.create({"title": "Достижения", "contexts":["link"],
+											"onclick": function(){openTabFromContextMenu("/u/#/"+request.params.id+"/achievements/")}});
+				chrome.contextMenus.create({"title": "Гараж", "contexts":["link"],
+											"onclick": function(){openTabFromContextMenu("/u/#/"+request.params.id+"/car/")}});
+                chrome.contextMenus.create({"title": "Друзья", "contexts":["link"],
+											"onclick": function(){openTabFromContextMenu("/u/#/"+request.params.id+"/friends/")}});
 			} else if(request.params.type=='vocs') {
 				chrome.contextMenus.create({"title": "Информация", "contexts":["link"],
 											"onclick": function(){openTabFromContextMenu("/vocs/"+request.params.id)}});
