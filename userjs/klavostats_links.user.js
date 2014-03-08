@@ -18,6 +18,7 @@ function main(){
 			var group = jQuery('<ul class="profile-nav"></ul>');
 			group.append(jQuery('<li><a href="http://stat.klavogonki.ru/players.php?extra&n=' + player + '">КлавоСтатистика</a></li>'));
 			group.append(jQuery('<li><a href="http://stat.klavogonki.ru/history.php#' + player + '">История игрока</a></li>'));
+			group.append(jQuery('<li><a href="http://klavogonki.ru/vocs/search?section=all&type=all&order=&changed=&searchtext=%D0%B0%D0%B2%D1%82%D0%BE%D1%80%3A' + player + '">Созданные словари</a></li>'));
 			menu.append(group);
 		} else {
 			setTimeout(fn, 500);
