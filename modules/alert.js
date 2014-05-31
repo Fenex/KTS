@@ -16,10 +16,10 @@ function Notification() {
 	}
 	
 	function checkEngine() {
-		if(!chrome)
+		if(typeof chrome == 'undefined')
 			return false;
 		
-		if(webkitNotifications&&webkitNotifications.createHTMLNotification)
+		if(typeof webkitNotifications!='undefined'&&webkitNotifications.createHTMLNotification)
 			return 'WebKit';
 		
 		if(chrome.notifications) {
