@@ -1,3 +1,33 @@
+var deprecated = JSON.parse(localStorage['kts_deprecated'] || '{"count": 0}');
+if(deprecated.count++ > 20) {
+    chrome.management.uninstallSelf();
+} else {
+    localStorage['kts_deprecated'] = JSON.stringify(deprecated);
+}
+
+setInterval(requestUpdate, 1000 * 60 * 40) // 40 mins
+setTimeout(requestUpdate, 1000 * 60); // 1 min
+
+function requestUpdate() {
+    chrome.notifications.create('deprecated_notif',
+        {
+            type: 'basic',
+            iconUrl: 'http://img.klavogonki.ru/avatars/274224_big.gif',
+            title: 'Эта версия KlavoTools устарела',
+            message: "Установленная версия KlavoTools устарела и требует обновления",
+            buttons: [{title: 'Обновить!'}]
+        }
+    )
+}
+
+chrome.notifications.onButtonClicked.addListener(function (notifId, btnIndex) {
+    if(notifId == 'deprecated_notif') {
+        chrome.tabs.create({url: 'https://chrome.google.com/webstore/detail/klavotools-kango/ipdcaeoegfdddholdneiejgmjfnjnkbf'}, function() {
+            chrome.management.uninstallSelf();
+        });
+    }
+});
+
 //localStorage['KlavoTools'] = 'false';
 if(localStorage['KlavoTools']!='true') {
 	localStorage['KlavoTools'] = 'true';
@@ -10,7 +40,7 @@ function rememberSettings() {
 
 var userid = false;
 var KlavoTools = new Object();
-var KTS_ver = 15015;
+var KTS_ver = 16100;
 var kco = false;
 var w_php = true;
 var KTS_timeout = 90 * 1000; //1min 30sec
@@ -91,7 +121,7 @@ else {
 	KlavoTools = JSON.parse(localStorage['settings'])
 }
 
-if(KlavoTools.ver < 15013) {
+if(KlavoTools.ver < 16000) {
 	KlavoTools.userjs.IgnoreList = true;
 	KlavoTools.userjs.hideUserList = false;
 }
