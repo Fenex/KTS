@@ -107,7 +107,7 @@ function checkUserId() {
 				Mail.popup = '';
 			}
 		}});
-	KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);
+	//KTS_mail_listener = setTimeout(checkUserId, KTS_timeout);
 }
 
 checkUserId();
