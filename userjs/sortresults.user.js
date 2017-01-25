@@ -20,10 +20,11 @@ function sort(sortKey)
 	function getPlace(a)
 	{
         	var rating = document.getElementById(a.id.replace("player", "rating"));
-        	if (!rating || !rating.childNodes[0])
-            		return 100500 - getProgress(a);
-        	var text = rating.childNodes[0].firstChild.innerHTML
-        	return parseInt(text,10);
+		if (!rating.childNodes[0]) 		
+			return 100500 - getProgress(a);
+		if (rating.firstChild.nodeType == 3)	
+			return 100500; 
+		return parseInt(rating.childNodes[0].firstChild.innerHTML,10) ;   
 	}
 
 	function getErrors(a)
